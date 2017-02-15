@@ -1,0 +1,27 @@
+{
+    "avaliacao360ZancoApp": {
+        "equipe" : {
+            "home": {
+                "title": "Equipes",
+                "createLabel": "Criar nova Equipe",
+                "createOrEditLabel": "Criar ou editar Equipe",
+                "search": "Pesquisar por Equipe"
+            },
+            "created": "Uma novo Equipe é criada com o identificador {{ param }}",
+            "updated": "Uma Equipe é atualizado com o identificador {{ param }}",
+            "deleted": "Uma Equipe é deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir a Equipe {{ id }}?"
+            },
+            "detail": {
+                "title": "Equipe"
+            },
+            "nome": "Nome",
+            "descricao": "Descricao",
+            "ativo": "Ativo",
+            "dataCriacao": "Data Criacao",
+            "lider": "Lider",
+            "membro": "Membro"
+        }
+    }
+}
