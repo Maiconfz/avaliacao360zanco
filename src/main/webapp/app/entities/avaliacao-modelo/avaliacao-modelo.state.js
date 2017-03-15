@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/avaliacao-modelo?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['TEAM_LEADER'],
                 pageTitle: 'avaliacao360ZancoApp.avaliacaoModelo.home.title'
             },
             views: {
@@ -55,7 +55,7 @@
             parent: 'entity',
             url: '/avaliacao-modelo/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['TEAM_LEADER'],
                 pageTitle: 'avaliacao360ZancoApp.avaliacaoModelo.detail.title'
             },
             views: {
@@ -87,7 +87,7 @@
             parent: 'avaliacao-modelo-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['TEAM_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -112,7 +112,7 @@
             parent: 'avaliacao-modelo',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['TEAM_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -141,7 +141,7 @@
             parent: 'avaliacao-modelo',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['TEAM_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -166,7 +166,7 @@
             parent: 'avaliacao-modelo',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['TEAM_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
