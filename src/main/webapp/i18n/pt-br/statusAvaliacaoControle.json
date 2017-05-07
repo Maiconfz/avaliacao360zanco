@@ -1,0 +1,9 @@
+{
+    "avaliacao360ZancoApp": {
+        "StatusAvaliacaoControle" : {
+            "null": "",
+            "PENDENTE": "PENDENTE",
+            "AVALIADO": "AVALIADO"
+        }
+    }
+}

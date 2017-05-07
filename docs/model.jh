@@ -1,0 +1,58 @@
+// # Entities #
+
+entity Equipe {
+	nome String required,
+	descricao String
+}
+
+entity AvaliacaoModelo {
+	nome String required,
+	descricao String required
+}
+
+entity Avaliacao {
+	nome String required,
+	descricao String required
+}
+
+entity AvaliacaoControle {
+	nome String required,
+	descricao String required
+}
+
+entity Pergunta {
+	assunto String required,
+	texto String required
+}
+
+entity Resposta {
+	nota Integer required min(0) max(10)
+}
+
+// # Relationships #
+
+relationship OneToMany {
+	Equipe{avaliacoesModelo} to AvaliacaoModelo{equipe required},
+	AvaliacaoModelo{perguntas} to Pergunta{avaliacaoModelo required}
+}
+
+relationship ManyToOne {
+	Equipe{lider(id) required} to User,
+	AvaliacaoControle{avaliacaoModelo required} to AvaliacaoModelo,
+	Resposta{pergunta required} to Pergunta,
+	Avaliacao{usuario(id) required} to User,
+	AvaliacaoControle{avaliado(id) required} to User,
+	AvaliacaoControle{avaliador(id) required} to User
+}
+
+relationship ManyToMany{
+	Equipe{membros(id)} to User
+}
+
+
+
+// Set pagination options
+paginate * with infinite-scroll
+
+// Set service options to all except few
+service all with serviceImpl

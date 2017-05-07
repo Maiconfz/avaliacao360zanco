@@ -20,5 +20,23 @@
 
     <cache alias="com.avaliacao360zanco.domain.User.persistentTokens" uses-template="simple"/>
 
+    <cache alias="com.avaliacao360zanco.domain.Equipe" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.Equipe.avaliacoesModelos" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.AvaliacaoModelo" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.AvaliacaoModelo.perguntas" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.Avaliacao" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.AvaliacaoControle" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.Pergunta" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.Resposta" uses-template="simple"/>
+
+    <cache alias="com.avaliacao360zanco.domain.Equipe.membros" uses-template="simple"/>
+
     <!-- jhipster-needle-ehcache-add-entry -->
 </config>
