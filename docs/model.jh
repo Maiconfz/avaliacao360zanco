@@ -15,11 +15,6 @@ entity Avaliacao {
 	descricao String required
 }
 
-entity AvaliacaoControle {
-	nome String required,
-	descricao String required
-}
-
 entity Pergunta {
 	assunto String required,
 	texto String required

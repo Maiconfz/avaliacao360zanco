@@ -1,48 +1,68 @@
 @startuml
+
 class User {
+    - id : Long
+    - login : String
+    - password : String
+    - firstName : String
+    - lastName : String
+    - email : String
+    - activated : boolean
+    - langKey : String
+    - activationKey : String
+    - resetKey : String
+    - resetDate : ZonedDateTime
 }
 
 class Equipe {
-    - String nome
-    - String descricao
+    - id : Long 
+    - nome : String 
+    - descricao : String
+    - lider : User
 }
-
-Equipe "0..*" o--> "1" User : <<lider>>
-Equipe "0..*" o--> "0..*" User : <<membro>>
 
 class AvaliacaoModelo{
-    - String nome
-    - String descricao
-}
-
-class AvaliacaoControle{
-    - String nome
-    - String descricao
+    - id : Long
+    - nome : String
+    - descricao : String
 }
 
 class Avaliacao{
-    - String nome
-    - String descricao
+    - id : Long 
+    - nome : String
+    - descricao : String
 }
 
 class PerguntaModelo{
-    - String assunto
-    - String texto
+    - id : Long
+    - assunto : String
+    - texto : String
 }
 
 class Pergunta {
-    - String assunto
-    - String texto
+    - id : Long
+    - assunto : String
+    - texto : String
 }
 
 class Resposta{
-    - String comentario
-    - int nota
+    - id : Long
+    - comentario : String
+    - nota : int
 }
 
-
-
-
+Equipe "0..*" o--> "1" User : lider
+Equipe "0..*" o--> "0..*" User : membros
+Equipe "1" o--> "0..*" AvaliacaoModelo
+AvaliacaoModelo "1" o--> "0..*" PerguntaModelo
+User "1" o--> "0..*" Avaliacao : "avaliado"
+User "1" o--> "0..*" Avaliacao : "avaliador"
+note left on link
+Null após avaliador
+fazer avaliação
+end note
+Avaliacao "1" o--> "0..*" Pergunta
+Pergunta "1" o--> "0..*" Resposta
 
 
 @enduml
