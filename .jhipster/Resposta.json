@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "pergunta",
+            "otherEntityName": "pergunta",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nota",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min",
+                "max"
+            ],
+            "fieldValidateRulesMin": 0,
+            "fieldValidateRulesMax": 10
+        }
+    ],
+    "changelogDate": "20170503185952",
+    "entityTableName": "resposta",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

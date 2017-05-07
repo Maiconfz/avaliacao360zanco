@@ -1,0 +1,48 @@
+@startuml
+class User {
+}
+
+class Equipe {
+    - String nome
+    - String descricao
+}
+
+Equipe "0..*" o--> "1" User : <<lider>>
+Equipe "0..*" o--> "0..*" User : <<membro>>
+
+class AvaliacaoModelo{
+    - String nome
+    - String descricao
+}
+
+class AvaliacaoControle{
+    - String nome
+    - String descricao
+}
+
+class Avaliacao{
+    - String nome
+    - String descricao
+}
+
+class PerguntaModelo{
+    - String assunto
+    - String texto
+}
+
+class Pergunta {
+    - String assunto
+    - String texto
+}
+
+class Resposta{
+    - String comentario
+    - int nota
+}
+
+
+
+
+
+
+@enduml
