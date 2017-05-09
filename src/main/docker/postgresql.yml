@@ -1,0 +1,11 @@
+version: '2'
+services:
+    avaliacao360zanco-postgresql:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/avaliacao360zanco/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=avaliacao360zanco
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
