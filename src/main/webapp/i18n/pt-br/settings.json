@@ -7,7 +7,8 @@
             "lastname": "Sobrenome",
             "lastname.placeholder": "Seu sobrenome",
             "language": "Idioma",
-            "button": "Salvar"
+            "button": "Salvar",
+            "roles": "Perfís"
         },
         "messages": {
             "error": {
