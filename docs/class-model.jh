@@ -10,51 +10,49 @@ entity Team {
 	description String maxlength(DEFAULT_MAX_LENGTH)
 }
 
-entity AvaliacaoModelo {
+entity EvaluationTemplate {
 	name String required maxlength(NAME_MAX_LENGTH),
 	description String maxlength(DEFAULT_MAX_LENGTH)
 }
 
-entity PerguntaModelo {
+entity QuestionTemplate {
 	subject String maxlength(DEFAULT_MAX_LENGTH),
 	text String required maxlength(DEFAULT_MAX_LENGTH)
 }
 
-entity Avaliacao {
+entity Evaluation {
 	name String required maxlength(NAME_MAX_LENGTH),
 	description String maxlength(DEFAULT_MAX_LENGTH) required
 }
 
-entity Pergunta {
+entity Question {
 	subject String maxlength(DEFAULT_MAX_LENGTH),
 	text String required maxlength(DEFAULT_MAX_LENGTH)
 }
 
-entity Resposta {
+entity Answer {
 	nota Integer required min(0) max(10)
 }
 
 // # Relationships #
 
 relationship OneToMany {
-	Team{avaliacoesModelo} to AvaliacaoModelo{Team required},
-	Team{avaliacoes} to Avaliacao{Team required},
-	AvaliacaoModelo{perguntasModelo} to PerguntaModelo{avaliacaoModelo required},
-	Avaliacao{perfuntas} to Pergunta{avaliacao required},
-	Pergunta{respostas} to Resposta{pergunta required}
+	Team{envaluationTemplates} to EvaluationTemplate{team required},
+	Team{evaluations} to Evaluation{team required},
+	EvaluationTemplate{questionTemplates} to QuestionTemplate{evaluationTemplate required},
+	Evaluation{questions} to Question{evaluation required},
+	Question{answers} to Answer{question required}
 }
 
 relationship ManyToOne {
-	Team{lider(id) required} to User,
-	Avaliacao{avaliado(id) required} to User,
-	Avaliacao{avaliador(id) required} to User
+	Team{leader(id) required} to User,
+	Evaluation{evaluatedUser(id) required} to User
 }
 
 relationship ManyToMany{
-	Team{membros(id)} to User
+	Team{members(id)} to User,
+	Evaluation{pendingEvaluators(id)} to User
 }
-
-
 
 // Set pagination options
 paginate * with infinite-scroll
