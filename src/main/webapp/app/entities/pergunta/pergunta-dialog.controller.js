@@ -5,15 +5,16 @@
         .module('avaliacao360ZancoApp')
         .controller('PerguntaDialogController', PerguntaDialogController);
 
-    PerguntaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pergunta', 'AvaliacaoModelo'];
+    PerguntaDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Pergunta', 'Resposta', 'Avaliacao'];
 
-    function PerguntaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pergunta, AvaliacaoModelo) {
+    function PerguntaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Pergunta, Resposta, Avaliacao) {
         var vm = this;
 
         vm.pergunta = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.avaliacaomodelos = AvaliacaoModelo.query();
+        vm.respostas = Resposta.query();
+        vm.avaliacaos = Avaliacao.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

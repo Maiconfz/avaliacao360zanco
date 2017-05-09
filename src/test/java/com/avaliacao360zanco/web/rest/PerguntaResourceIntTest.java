@@ -3,7 +3,7 @@ package com.avaliacao360zanco.web.rest;
 import com.avaliacao360zanco.Avaliacao360ZancoApp;
 
 import com.avaliacao360zanco.domain.Pergunta;
-import com.avaliacao360zanco.domain.AvaliacaoModelo;
+import com.avaliacao360zanco.domain.Avaliacao;
 import com.avaliacao360zanco.repository.PerguntaRepository;
 import com.avaliacao360zanco.service.PerguntaService;
 
@@ -85,10 +85,10 @@ public class PerguntaResourceIntTest {
                 .assunto(DEFAULT_ASSUNTO)
                 .texto(DEFAULT_TEXTO);
         // Add required entity
-        AvaliacaoModelo avaliacaoModelo = AvaliacaoModeloResourceIntTest.createEntity(em);
-        em.persist(avaliacaoModelo);
+        Avaliacao avaliacao = AvaliacaoResourceIntTest.createEntity(em);
+        em.persist(avaliacao);
         em.flush();
-        pergunta.setAvaliacaoModelo(avaliacaoModelo);
+        pergunta.setAvaliacao(avaliacao);
         return pergunta;
     }
 

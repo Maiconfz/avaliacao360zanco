@@ -1,0 +1,24 @@
+{
+    "avaliacao360ZancoApp": {
+        "perguntaModelo" : {
+            "home": {
+                "title": "Pergunta Modelos",
+                "createLabel": "Criar novo Pergunta Modelo",
+                "createOrEditLabel": "Criar ou editar Pergunta Modelo",
+                "search": "Pesquisar por Pergunta Modelo"
+            },
+            "created": "Um novo Pergunta Modelo é criado com o identificador {{ param }}",
+            "updated": "Um Pergunta Modelo é atualizado com o identificador {{ param }}",
+            "deleted": "Um Pergunta Modelo é deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Pergunta Modelo {{ id }}?"
+            },
+            "detail": {
+                "title": "Pergunta Modelo"
+            },
+            "assunto": "Assunto",
+            "texto": "Texto",
+            "avaliacaoModelo": "Avaliacao Modelo"
+        }
+    }
+}

@@ -18,7 +18,10 @@
             },
             "nome": "Nome",
             "descricao": "Descricao",
-            "usuario": "Usuario"
+            "perfuntas": "Perfuntas",
+            "avaliado": "Avaliado",
+            "avaliador": "Avaliador",
+            "equipe": "Equipe"
         }
     }
 }

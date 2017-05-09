@@ -13,6 +13,7 @@
                 "avaliacaoControle": "Avaliacao Controle",
                 "pergunta": "Pergunta",
                 "resposta": "Resposta",
+                "perguntaModelo": "Pergunta Modelo",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

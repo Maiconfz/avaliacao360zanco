@@ -8,11 +8,23 @@
     -->
     <changeSet id="20170503185949-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="usuario_id"
+        <addForeignKeyConstraint baseColumnNames="avaliado_id"
                                  baseTableName="avaliacao"
-                                 constraintName="fk_avaliacao_usuario_id"
+                                 constraintName="fk_avaliacao_avaliado_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="avaliador_id"
+                                 baseTableName="avaliacao"
+                                 constraintName="fk_avaliacao_avaliador_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="equipe_id"
+                                 baseTableName="avaliacao"
+                                 constraintName="fk_avaliacao_equipe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="equipe"/>
 
     </changeSet>
 </databaseChangeLog>

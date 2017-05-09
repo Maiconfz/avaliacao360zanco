@@ -10,6 +10,11 @@ entity AvaliacaoModelo {
 	descricao String required
 }
 
+entity PerguntaModelo {
+	assunto String required,
+	texto String required
+}
+
 entity Avaliacao {
 	nome String required,
 	descricao String required
@@ -28,16 +33,16 @@ entity Resposta {
 
 relationship OneToMany {
 	Equipe{avaliacoesModelo} to AvaliacaoModelo{equipe required},
-	AvaliacaoModelo{perguntas} to Pergunta{avaliacaoModelo required}
+	Equipe{avaliacoes} to Avaliacao{equipe required},
+	AvaliacaoModelo{perguntasModelo} to PerguntaModelo{avaliacaoModelo required},
+	Avaliacao{perfuntas} to Pergunta{avaliacao required},
+	Pergunta{respostas} to Resposta{pergunta required}
 }
 
 relationship ManyToOne {
 	Equipe{lider(id) required} to User,
-	AvaliacaoControle{avaliacaoModelo required} to AvaliacaoModelo,
-	Resposta{pergunta required} to Pergunta,
-	Avaliacao{usuario(id) required} to User,
-	AvaliacaoControle{avaliado(id) required} to User,
-	AvaliacaoControle{avaliador(id) required} to User
+	Avaliacao{avaliado(id) required} to User,
+	Avaliacao{avaliador(id) required} to User
 }
 
 relationship ManyToMany{

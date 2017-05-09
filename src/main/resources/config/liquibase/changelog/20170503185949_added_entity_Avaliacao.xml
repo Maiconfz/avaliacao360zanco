@@ -32,7 +32,15 @@
                 <constraints nullable="false" />
             </column>
             
-            <column name="usuario_id" type="bigint">
+            <column name="avaliado_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="avaliador_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="equipe_id" type="bigint">
                 <constraints nullable="false" />
             </column>
 

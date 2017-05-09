@@ -5,9 +5,9 @@
         .module('avaliacao360ZancoApp')
         .controller('PerguntaDetailController', PerguntaDetailController);
 
-    PerguntaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Pergunta', 'AvaliacaoModelo'];
+    PerguntaDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Pergunta', 'Resposta', 'Avaliacao'];
 
-    function PerguntaDetailController($scope, $rootScope, $stateParams, previousState, entity, Pergunta, AvaliacaoModelo) {
+    function PerguntaDetailController($scope, $rootScope, $stateParams, previousState, entity, Pergunta, Resposta, Avaliacao) {
         var vm = this;
 
         vm.pergunta = entity;

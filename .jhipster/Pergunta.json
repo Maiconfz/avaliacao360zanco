@@ -2,10 +2,16 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "relationshipName": "respostas",
+            "otherEntityName": "resposta",
+            "otherEntityRelationshipName": "pergunta"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
-            "relationshipName": "avaliacaoModelo",
-            "otherEntityName": "avaliacaoModelo",
+            "relationshipName": "avaliacao",
+            "otherEntityName": "avaliacao",
             "otherEntityField": "id"
         }
     ],

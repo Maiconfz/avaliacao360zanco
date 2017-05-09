@@ -12,9 +12,17 @@
         <dd>
             <span>{{vm.avaliacao.descricao}}</span>
         </dd>
-        <dt><span data-translate="avaliacao360ZancoApp.avaliacao.usuario">Usuario</span></dt>
+        <dt><span data-translate="avaliacao360ZancoApp.avaliacao.avaliado">Avaliado</span></dt>
         <dd>
-            {{vm.avaliacao.usuario.id}}
+            {{vm.avaliacao.avaliado.id}}
+        </dd>
+        <dt><span data-translate="avaliacao360ZancoApp.avaliacao.avaliador">Avaliador</span></dt>
+        <dd>
+            {{vm.avaliacao.avaliador.id}}
+        </dd>
+        <dt><span data-translate="avaliacao360ZancoApp.avaliacao.equipe">Equipe</span></dt>
+        <dd>
+            <a ui-sref="equipe-detail({id:vm.avaliacao.equipe.id})">{{vm.avaliacao.equipe.id}}</a>
         </dd>
     </dl>
 

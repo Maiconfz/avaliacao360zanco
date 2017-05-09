@@ -39,14 +39,38 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="avaliacao360ZancoApp.avaliacao.usuario" for="field_usuario">Usuario</label>
-            <select class="form-control" id="field_usuario" name="usuario" ng-model="vm.avaliacao.usuario" ng-options="user as user.id for user in vm.users track by user.id" required>
+            <label data-translate="avaliacao360ZancoApp.avaliacao.avaliado" for="field_avaliado">Avaliado</label>
+            <select class="form-control" id="field_avaliado" name="avaliado" ng-model="vm.avaliacao.avaliado" ng-options="user as user.id for user in vm.users track by user.id" required>
                 <option value=""></option>
             </select>
         </div>
-        <div ng-show="editForm.usuario.$invalid">
+        <div ng-show="editForm.avaliado.$invalid">
             <p class="help-block"
-                ng-show="editForm.usuario.$error.required" data-translate="entity.validation.required">
+                ng-show="editForm.avaliado.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="avaliacao360ZancoApp.avaliacao.avaliador" for="field_avaliador">Avaliador</label>
+            <select class="form-control" id="field_avaliador" name="avaliador" ng-model="vm.avaliacao.avaliador" ng-options="user as user.id for user in vm.users track by user.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.avaliador.$invalid">
+            <p class="help-block"
+                ng-show="editForm.avaliador.$error.required" data-translate="entity.validation.required">
+                This field is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label data-translate="avaliacao360ZancoApp.avaliacao.equipe" for="field_equipe">Equipe</label>
+            <select class="form-control" id="field_equipe" name="equipe" ng-model="vm.avaliacao.equipe" ng-options="equipe as equipe.id for equipe in vm.equipes track by equipe.id" required>
+                <option value=""></option>
+            </select>
+        </div>
+        <div ng-show="editForm.equipe.$invalid">
+            <p class="help-block"
+                ng-show="editForm.equipe.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>

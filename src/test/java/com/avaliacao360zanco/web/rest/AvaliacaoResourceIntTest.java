@@ -4,6 +4,8 @@ import com.avaliacao360zanco.Avaliacao360ZancoApp;
 
 import com.avaliacao360zanco.domain.Avaliacao;
 import com.avaliacao360zanco.domain.User;
+import com.avaliacao360zanco.domain.User;
+import com.avaliacao360zanco.domain.Equipe;
 import com.avaliacao360zanco.repository.AvaliacaoRepository;
 import com.avaliacao360zanco.service.AvaliacaoService;
 
@@ -85,10 +87,20 @@ public class AvaliacaoResourceIntTest {
                 .nome(DEFAULT_NOME)
                 .descricao(DEFAULT_DESCRICAO);
         // Add required entity
-        User usuario = UserResourceIntTest.createEntity(em);
-        em.persist(usuario);
+        User avaliado = UserResourceIntTest.createEntity(em);
+        em.persist(avaliado);
         em.flush();
-        avaliacao.setUsuario(usuario);
+        avaliacao.setAvaliado(avaliado);
+        // Add required entity
+        User avaliador = UserResourceIntTest.createEntity(em);
+        em.persist(avaliador);
+        em.flush();
+        avaliacao.setAvaliador(avaliador);
+        // Add required entity
+        Equipe equipe = EquipeResourceIntTest.createEntity(em);
+        em.persist(equipe);
+        em.flush();
+        avaliacao.setEquipe(equipe);
         return avaliacao;
     }
 

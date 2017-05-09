@@ -2,10 +2,30 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "relationshipName": "perfuntas",
+            "otherEntityName": "pergunta",
+            "otherEntityRelationshipName": "avaliacao"
+        },
+        {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
-            "relationshipName": "usuario",
+            "relationshipName": "avaliado",
             "otherEntityName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "avaliador",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "equipe",
+            "otherEntityName": "equipe",
             "otherEntityField": "id"
         }
     ],

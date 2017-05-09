@@ -37,6 +37,11 @@ public class Equipe implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<AvaliacaoModelo> avaliacoesModelos = new HashSet<>();
 
+    @OneToMany(mappedBy = "equipe")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Avaliacao> avaliacoes = new HashSet<>();
+
     @ManyToOne
     @NotNull
     private User lider;
@@ -105,6 +110,31 @@ public class Equipe implements Serializable {
 
     public void setAvaliacoesModelos(Set<AvaliacaoModelo> avaliacaoModelos) {
         this.avaliacoesModelos = avaliacaoModelos;
+    }
+
+    public Set<Avaliacao> getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public Equipe avaliacoes(Set<Avaliacao> avaliacaos) {
+        this.avaliacoes = avaliacaos;
+        return this;
+    }
+
+    public Equipe addAvaliacoes(Avaliacao avaliacao) {
+        avaliacoes.add(avaliacao);
+        avaliacao.setEquipe(this);
+        return this;
+    }
+
+    public Equipe removeAvaliacoes(Avaliacao avaliacao) {
+        avaliacoes.remove(avaliacao);
+        avaliacao.setEquipe(null);
+        return this;
+    }
+
+    public void setAvaliacoes(Set<Avaliacao> avaliacaos) {
+        this.avaliacoes = avaliacaos;
     }
 
     public User getLider() {

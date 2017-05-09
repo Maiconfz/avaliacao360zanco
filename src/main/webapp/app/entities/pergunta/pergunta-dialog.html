@@ -39,14 +39,14 @@
         </div>
 
         <div class="form-group">
-            <label data-translate="avaliacao360ZancoApp.pergunta.avaliacaoModelo" for="field_avaliacaoModelo">Avaliacao Modelo</label>
-            <select class="form-control" id="field_avaliacaoModelo" name="avaliacaoModelo" ng-model="vm.pergunta.avaliacaoModelo" ng-options="avaliacaoModelo as avaliacaoModelo.id for avaliacaoModelo in vm.avaliacaomodelos track by avaliacaoModelo.id" required>
+            <label data-translate="avaliacao360ZancoApp.pergunta.avaliacao" for="field_avaliacao">Avaliacao</label>
+            <select class="form-control" id="field_avaliacao" name="avaliacao" ng-model="vm.pergunta.avaliacao" ng-options="avaliacao as avaliacao.id for avaliacao in vm.avaliacaos track by avaliacao.id" required>
                 <option value=""></option>
             </select>
         </div>
-        <div ng-show="editForm.avaliacaoModelo.$invalid">
+        <div ng-show="editForm.avaliacao.$invalid">
             <p class="help-block"
-                ng-show="editForm.avaliacaoModelo.$error.required" data-translate="entity.validation.required">
+                ng-show="editForm.avaliacao.$error.required" data-translate="entity.validation.required">
                 This field is required.
             </p>
         </div>

@@ -12,7 +12,10 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao,Long> {
 
-    @Query("select avaliacao from Avaliacao avaliacao where avaliacao.usuario.login = ?#{principal.username}")
-    List<Avaliacao> findByUsuarioIsCurrentUser();
+    @Query("select avaliacao from Avaliacao avaliacao where avaliacao.avaliado.login = ?#{principal.username}")
+    List<Avaliacao> findByAvaliadoIsCurrentUser();
+
+    @Query("select avaliacao from Avaliacao avaliacao where avaliacao.avaliador.login = ?#{principal.username}")
+    List<Avaliacao> findByAvaliadorIsCurrentUser();
 
 }

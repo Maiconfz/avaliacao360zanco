@@ -36,7 +36,7 @@ public class AvaliacaoModelo implements Serializable {
     @OneToMany(mappedBy = "avaliacaoModelo")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Pergunta> perguntas = new HashSet<>();
+    private Set<PerguntaModelo> perguntasModelos = new HashSet<>();
 
     @ManyToOne
     @NotNull
@@ -76,29 +76,29 @@ public class AvaliacaoModelo implements Serializable {
         this.descricao = descricao;
     }
 
-    public Set<Pergunta> getPerguntas() {
-        return perguntas;
+    public Set<PerguntaModelo> getPerguntasModelos() {
+        return perguntasModelos;
     }
 
-    public AvaliacaoModelo perguntas(Set<Pergunta> perguntas) {
-        this.perguntas = perguntas;
+    public AvaliacaoModelo perguntasModelos(Set<PerguntaModelo> perguntaModelos) {
+        this.perguntasModelos = perguntaModelos;
         return this;
     }
 
-    public AvaliacaoModelo addPerguntas(Pergunta pergunta) {
-        perguntas.add(pergunta);
-        pergunta.setAvaliacaoModelo(this);
+    public AvaliacaoModelo addPerguntasModelo(PerguntaModelo perguntaModelo) {
+        perguntasModelos.add(perguntaModelo);
+        perguntaModelo.setAvaliacaoModelo(this);
         return this;
     }
 
-    public AvaliacaoModelo removePerguntas(Pergunta pergunta) {
-        perguntas.remove(pergunta);
-        pergunta.setAvaliacaoModelo(null);
+    public AvaliacaoModelo removePerguntasModelo(PerguntaModelo perguntaModelo) {
+        perguntasModelos.remove(perguntaModelo);
+        perguntaModelo.setAvaliacaoModelo(null);
         return this;
     }
 
-    public void setPerguntas(Set<Pergunta> perguntas) {
-        this.perguntas = perguntas;
+    public void setPerguntasModelos(Set<PerguntaModelo> perguntaModelos) {
+        this.perguntasModelos = perguntaModelos;
     }
 
     public Equipe getEquipe() {

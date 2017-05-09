@@ -18,7 +18,8 @@
             },
             "assunto": "Assunto",
             "texto": "Texto",
-            "avaliacaoModelo": "Avaliacao Modelo"
+            "respostas": "Respostas",
+            "avaliacao": "Avaliacao"
         }
     }
 }

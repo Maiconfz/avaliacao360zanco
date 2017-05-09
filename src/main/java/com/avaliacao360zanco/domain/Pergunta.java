@@ -1,11 +1,14 @@
 package com.avaliacao360zanco.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,9 +33,14 @@ public class Pergunta implements Serializable {
     @Column(name = "texto", nullable = false)
     private String texto;
 
+    @OneToMany(mappedBy = "pergunta")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Resposta> respostas = new HashSet<>();
+
     @ManyToOne
     @NotNull
-    private AvaliacaoModelo avaliacaoModelo;
+    private Avaliacao avaliacao;
 
     public Long getId() {
         return id;
@@ -68,17 +76,42 @@ public class Pergunta implements Serializable {
         this.texto = texto;
     }
 
-    public AvaliacaoModelo getAvaliacaoModelo() {
-        return avaliacaoModelo;
+    public Set<Resposta> getRespostas() {
+        return respostas;
     }
 
-    public Pergunta avaliacaoModelo(AvaliacaoModelo avaliacaoModelo) {
-        this.avaliacaoModelo = avaliacaoModelo;
+    public Pergunta respostas(Set<Resposta> respostas) {
+        this.respostas = respostas;
         return this;
     }
 
-    public void setAvaliacaoModelo(AvaliacaoModelo avaliacaoModelo) {
-        this.avaliacaoModelo = avaliacaoModelo;
+    public Pergunta addRespostas(Resposta resposta) {
+        respostas.add(resposta);
+        resposta.setPergunta(this);
+        return this;
+    }
+
+    public Pergunta removeRespostas(Resposta resposta) {
+        respostas.remove(resposta);
+        resposta.setPergunta(null);
+        return this;
+    }
+
+    public void setRespostas(Set<Resposta> respostas) {
+        this.respostas = respostas;
+    }
+
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public Pergunta avaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+        return this;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
     @Override

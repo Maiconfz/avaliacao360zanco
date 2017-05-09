@@ -11,6 +11,7 @@
     <include file="classpath:config/liquibase/changelog/20170503185950_added_entity_AvaliacaoControle.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170503185951_added_entity_Pergunta.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170503185952_added_entity_Resposta.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170509021745_added_entity_PerguntaModelo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170503185948_added_entity_constraints_AvaliacaoModelo.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170503185950_added_entity_constraints_AvaliacaoControle.xml" relativeToChangelogFile="false"/>
@@ -18,5 +19,6 @@
     <include file="classpath:config/liquibase/changelog/20170503185952_added_entity_constraints_Resposta.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170503185947_added_entity_constraints_Equipe.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170503185949_added_entity_constraints_Avaliacao.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170509021745_added_entity_constraints_PerguntaModelo.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

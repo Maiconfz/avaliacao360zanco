@@ -1,11 +1,14 @@
 package com.avaliacao360zanco.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -30,9 +33,22 @@ public class Avaliacao implements Serializable {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
+    @OneToMany(mappedBy = "avaliacao")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Pergunta> perfuntas = new HashSet<>();
+
     @ManyToOne
     @NotNull
-    private User usuario;
+    private User avaliado;
+
+    @ManyToOne
+    @NotNull
+    private User avaliador;
+
+    @ManyToOne
+    @NotNull
+    private Equipe equipe;
 
     public Long getId() {
         return id;
@@ -68,17 +84,68 @@ public class Avaliacao implements Serializable {
         this.descricao = descricao;
     }
 
-    public User getUsuario() {
-        return usuario;
+    public Set<Pergunta> getPerfuntas() {
+        return perfuntas;
     }
 
-    public Avaliacao usuario(User user) {
-        this.usuario = user;
+    public Avaliacao perfuntas(Set<Pergunta> perguntas) {
+        this.perfuntas = perguntas;
         return this;
     }
 
-    public void setUsuario(User user) {
-        this.usuario = user;
+    public Avaliacao addPerfuntas(Pergunta pergunta) {
+        perfuntas.add(pergunta);
+        pergunta.setAvaliacao(this);
+        return this;
+    }
+
+    public Avaliacao removePerfuntas(Pergunta pergunta) {
+        perfuntas.remove(pergunta);
+        pergunta.setAvaliacao(null);
+        return this;
+    }
+
+    public void setPerfuntas(Set<Pergunta> perguntas) {
+        this.perfuntas = perguntas;
+    }
+
+    public User getAvaliado() {
+        return avaliado;
+    }
+
+    public Avaliacao avaliado(User user) {
+        this.avaliado = user;
+        return this;
+    }
+
+    public void setAvaliado(User user) {
+        this.avaliado = user;
+    }
+
+    public User getAvaliador() {
+        return avaliador;
+    }
+
+    public Avaliacao avaliador(User user) {
+        this.avaliador = user;
+        return this;
+    }
+
+    public void setAvaliador(User user) {
+        this.avaliador = user;
+    }
+
+    public Equipe getEquipe() {
+        return equipe;
+    }
+
+    public Avaliacao equipe(Equipe equipe) {
+        this.equipe = equipe;
+        return this;
+    }
+
+    public void setEquipe(Equipe equipe) {
+        this.equipe = equipe;
     }
 
     @Override

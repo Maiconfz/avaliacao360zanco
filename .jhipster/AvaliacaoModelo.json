@@ -3,8 +3,8 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "perguntas",
-            "otherEntityName": "pergunta",
+            "relationshipName": "perguntasModelo",
+            "otherEntityName": "perguntaModelo",
             "otherEntityRelationshipName": "avaliacaoModelo"
         },
         {
