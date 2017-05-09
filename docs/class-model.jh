@@ -1,0 +1,63 @@
+// # Constants #
+
+DEFAULT_MAX_LENGTH = 200
+NAME_MAX_LENGTH = 30
+
+// # Entities #
+
+entity Team {
+	name String required maxlength(NAME_MAX_LENGTH),
+	description String maxlength(DEFAULT_MAX_LENGTH)
+}
+
+entity AvaliacaoModelo {
+	name String required maxlength(NAME_MAX_LENGTH),
+	description String maxlength(DEFAULT_MAX_LENGTH)
+}
+
+entity PerguntaModelo {
+	subject String maxlength(DEFAULT_MAX_LENGTH),
+	text String required maxlength(DEFAULT_MAX_LENGTH)
+}
+
+entity Avaliacao {
+	name String required maxlength(NAME_MAX_LENGTH),
+	description String maxlength(DEFAULT_MAX_LENGTH) required
+}
+
+entity Pergunta {
+	subject String maxlength(DEFAULT_MAX_LENGTH),
+	text String required maxlength(DEFAULT_MAX_LENGTH)
+}
+
+entity Resposta {
+	nota Integer required min(0) max(10)
+}
+
+// # Relationships #
+
+relationship OneToMany {
+	Team{avaliacoesModelo} to AvaliacaoModelo{Team required},
+	Team{avaliacoes} to Avaliacao{Team required},
+	AvaliacaoModelo{perguntasModelo} to PerguntaModelo{avaliacaoModelo required},
+	Avaliacao{perfuntas} to Pergunta{avaliacao required},
+	Pergunta{respostas} to Resposta{pergunta required}
+}
+
+relationship ManyToOne {
+	Team{lider(id) required} to User,
+	Avaliacao{avaliado(id) required} to User,
+	Avaliacao{avaliador(id) required} to User
+}
+
+relationship ManyToMany{
+	Team{membros(id)} to User
+}
+
+
+
+// Set pagination options
+paginate * with infinite-scroll
+
+// Set service options to all except few
+service all with serviceImpl
