@@ -1,0 +1,73 @@
+@startuml
+
+class User {
+    - id : Long
+    - login : String
+    - password : String
+    - firstName : String
+    - lastName : String
+    - email : String
+    - activated : boolean
+    - langKey : String
+    - activationKey : String
+    - resetKey : String
+    - resetDate : ZonedDateTime
+}
+
+class Team {
+    - id : Long 
+    - name : String 
+    - description : String
+    - leader : User
+    - evaluationTemplates : List<EvaluationTemplate>
+}
+
+class EvaluationTemplate{
+    - id : Long
+    - name : String
+    - description : String
+    - questionTemplates : List<QuestionTemplate>
+}
+
+class QuestionTemplate{
+    - id : Long
+    - subject : String
+    - texto : String
+    - evaluationTemplate : EvaluationTemplate
+}
+
+class Evaluation{
+    - id : Long 
+    - name : String
+    - description : String
+    - evaluated: User
+    - pendingEvaluators : List<User>
+    - questions : List<Question>
+}
+
+class Question {
+    - id : Long
+    - subject : String
+    - text : String
+    - evaluation : Evaluation
+    - answers : List<Answer>
+}
+
+class Answer{
+    - id : Long
+    - comment : String
+    - rating : int
+    - question : Question
+}
+
+Team "0..*" o-up-> "1" User : leader
+Team "0..*" o-up-> "0..*" User : members
+Team "1" o-down-> "0..*" EvaluationTemplate
+Team "1" o-right-> "0..*" Evaluation
+EvaluationTemplate "1" o-down-> "0..*" QuestionTemplate
+User "1" o-down-> "0..*" Evaluation : "evaluated"
+User "0..*" o-down-> "0..*" Evaluation : "pendingEvaluators"
+Evaluation "1" o-down-> "0..*" Question
+Question "1" o-down-> "0..*" Answer
+
+@enduml
