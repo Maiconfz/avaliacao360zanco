@@ -43,6 +43,19 @@ public class CacheConfiguration {
             cm.createCache(com.av360.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.av360.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.av360.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.av360.domain.Team.class.getName(), jcacheConfiguration);
+            cm.createCache(com.av360.domain.Team.class.getName() + ".envaluationTemplates", jcacheConfiguration);
+            cm.createCache(com.av360.domain.Team.class.getName() + ".evaluations", jcacheConfiguration);
+            cm.createCache(com.av360.domain.Team.class.getName() + ".members", jcacheConfiguration);
+            cm.createCache(com.av360.domain.EvaluationTemplate.class.getName(), jcacheConfiguration);
+            cm.createCache(com.av360.domain.EvaluationTemplate.class.getName() + ".questionTemplates", jcacheConfiguration);
+            cm.createCache(com.av360.domain.QuestionTemplate.class.getName(), jcacheConfiguration);
+            cm.createCache(com.av360.domain.Evaluation.class.getName(), jcacheConfiguration);
+            cm.createCache(com.av360.domain.Evaluation.class.getName() + ".questions", jcacheConfiguration);
+            cm.createCache(com.av360.domain.Evaluation.class.getName() + ".pendingEvaluators", jcacheConfiguration);
+            cm.createCache(com.av360.domain.Question.class.getName(), jcacheConfiguration);
+            cm.createCache(com.av360.domain.Question.class.getName() + ".answers", jcacheConfiguration);
+            cm.createCache(com.av360.domain.Answer.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

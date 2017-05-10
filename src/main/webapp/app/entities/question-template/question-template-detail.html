@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="avaliacao360ZancoApp.questionTemplate.detail.title">Question Template</span> {{vm.questionTemplate.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="avaliacao360ZancoApp.questionTemplate.subject">Subject</span></dt>
+        <dd>
+            <span>{{vm.questionTemplate.subject}}</span>
+        </dd>
+        <dt><span data-translate="avaliacao360ZancoApp.questionTemplate.text">Text</span></dt>
+        <dd>
+            <span>{{vm.questionTemplate.text}}</span>
+        </dd>
+        <dt><span data-translate="avaliacao360ZancoApp.questionTemplate.evaluationTemplate">Evaluation Template</span></dt>
+        <dd>
+            <a ui-sref="evaluation-template-detail({id:vm.questionTemplate.evaluationTemplate.id})">{{vm.questionTemplate.evaluationTemplate.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="question-template-detail.edit({id:vm.questionTemplate.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

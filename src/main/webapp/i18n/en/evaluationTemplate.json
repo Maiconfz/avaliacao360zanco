@@ -1,0 +1,24 @@
+{
+    "avaliacao360ZancoApp": {
+        "evaluationTemplate" : {
+            "home": {
+                "title": "Evaluation Templates",
+                "createLabel": "Create a new Evaluation Template",
+                "createOrEditLabel": "Create or edit a Evaluation Template"
+            },
+            "created": "A new Evaluation Template is created with identifier {{ param }}",
+            "updated": "A Evaluation Template is updated with identifier {{ param }}",
+            "deleted": "A Evaluation Template is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Evaluation Template {{ id }}?"
+            },
+            "detail": {
+                "title": "Evaluation Template"
+            },
+            "name": "Name",
+            "description": "Description",
+            "questionTemplates": "Question Templates",
+            "team": "Team"
+        }
+    }
+}

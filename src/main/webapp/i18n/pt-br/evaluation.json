@@ -1,0 +1,26 @@
+{
+    "avaliacao360ZancoApp": {
+        "evaluation" : {
+            "home": {
+                "title": "Evaluations",
+                "createLabel": "Criar novo Evaluation",
+                "createOrEditLabel": "Criar ou editar Evaluation"
+            },
+            "created": "Um novo Evaluation é criado com o identificador {{ param }}",
+            "updated": "Um Evaluation é atualizado com o identificador {{ param }}",
+            "deleted": "Um Evaluation é deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Evaluation {{ id }}?"
+            },
+            "detail": {
+                "title": "Evaluation"
+            },
+            "name": "Name",
+            "description": "Description",
+            "questions": "Questions",
+            "evaluatedUser": "Evaluated User",
+            "pendingEvaluators": "Pending Evaluators",
+            "team": "Team"
+        }
+    }
+}

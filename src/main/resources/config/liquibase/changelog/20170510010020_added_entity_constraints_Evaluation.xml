@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Evaluation.
+    -->
+    <changeSet id="20170510010020-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="evaluated_user_id"
+                                 baseTableName="evaluation"
+                                 constraintName="fk_evaluation_evaluated_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="evaluations_id"
+                                 baseTableName="evaluation_pending_evaluators"
+                                 constraintName="fk_evaluation_pending_evaluators_evaluations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="evaluation"/>
+        <addForeignKeyConstraint baseColumnNames="pending_evaluators_id"
+                                 baseTableName="evaluation_pending_evaluators"
+                                 constraintName="fk_evaluation_pending_evaluators_pending_evaluators_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="evaluation"
+                                 constraintName="fk_evaluation_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+    </changeSet>
+</databaseChangeLog>

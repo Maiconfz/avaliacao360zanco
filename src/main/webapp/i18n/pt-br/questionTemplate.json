@@ -1,0 +1,23 @@
+{
+    "avaliacao360ZancoApp": {
+        "questionTemplate" : {
+            "home": {
+                "title": "Question Templates",
+                "createLabel": "Criar novo Question Template",
+                "createOrEditLabel": "Criar ou editar Question Template"
+            },
+            "created": "Um novo Question Template é criado com o identificador {{ param }}",
+            "updated": "Um Question Template é atualizado com o identificador {{ param }}",
+            "deleted": "Um Question Template é deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Question Template {{ id }}?"
+            },
+            "detail": {
+                "title": "Question Template"
+            },
+            "subject": "Subject",
+            "text": "Text",
+            "evaluationTemplate": "Evaluation Template"
+        }
+    }
+}

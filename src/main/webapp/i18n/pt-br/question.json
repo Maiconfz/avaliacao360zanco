@@ -1,0 +1,24 @@
+{
+    "avaliacao360ZancoApp": {
+        "question" : {
+            "home": {
+                "title": "Questions",
+                "createLabel": "Criar novo Question",
+                "createOrEditLabel": "Criar ou editar Question"
+            },
+            "created": "Um novo Question é criado com o identificador {{ param }}",
+            "updated": "Um Question é atualizado com o identificador {{ param }}",
+            "deleted": "Um Question é deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Question {{ id }}?"
+            },
+            "detail": {
+                "title": "Question"
+            },
+            "subject": "Subject",
+            "text": "Text",
+            "answers": "Answers",
+            "evaluation": "Evaluation"
+        }
+    }
+}

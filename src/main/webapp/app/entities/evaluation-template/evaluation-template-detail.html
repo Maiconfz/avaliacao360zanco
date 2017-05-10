@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="avaliacao360ZancoApp.evaluationTemplate.detail.title">Evaluation Template</span> {{vm.evaluationTemplate.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="avaliacao360ZancoApp.evaluationTemplate.name">Name</span></dt>
+        <dd>
+            <span>{{vm.evaluationTemplate.name}}</span>
+        </dd>
+        <dt><span data-translate="avaliacao360ZancoApp.evaluationTemplate.description">Description</span></dt>
+        <dd>
+            <span>{{vm.evaluationTemplate.description}}</span>
+        </dd>
+        <dt><span data-translate="avaliacao360ZancoApp.evaluationTemplate.team">Team</span></dt>
+        <dd>
+            <a ui-sref="team-detail({id:vm.evaluationTemplate.team.id})">{{vm.evaluationTemplate.team.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="evaluation-template-detail.edit({id:vm.evaluationTemplate.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
