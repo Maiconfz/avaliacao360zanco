@@ -26,48 +26,48 @@
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
                             <span class="hidden-sm" data-translate="global.menu.entities.main">
-                                Entities
+                                Team Area
                             </span>
                             <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active">
-                                <a ui-sref="team" ng-click="vm.collapseNavbar()">
+                        <li ui-sref-active="active" has-authority="ROLE_LEADER">
+                            <a ui-sref="team" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.team">Team</span>
+                                    <span data-translate="global.menu.entities.team">Manage Teams</span>
                                 </a>
-                            </li>
-                        <li ui-sref-active="active">
-                                <a ui-sref="evaluation-template" ng-click="vm.collapseNavbar()">
+                        </li>
+                        <li ui-sref-active="active" has-authority="ROLE_LEADER">
+                            <a ui-sref="evaluation-template" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.evaluationTemplate">Evaluation Template</span>
+                                    <span data-translate="global.menu.entities.evaluationTemplate">Manage Evaluation Templates</span>
                                 </a>
-                            </li>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="question-template" ng-click="vm.collapseNavbar()">
+                            <a ui-sref="question-template" ng-click="vm.collapseNavbar()" has-authority="ROLE_LEADER">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.questionTemplate">Question Template</span>
+                                    <span data-translate="global.menu.entities.questionTemplate">Manage Question Templates</span>
                                 </a>
-                            </li>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="evaluation" ng-click="vm.collapseNavbar()">
+                            <a ui-sref="evaluation" ng-click="vm.collapseNavbar()" has-authority="ROLE_MEMBER">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.evaluation">Evaluation</span>
+                                    <span data-translate="global.menu.entities.myTeams">My teams</span>
                                 </a>
-                            </li>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="question" ng-click="vm.collapseNavbar()">
+                            <a ui-sref="evaluation" ng-click="vm.collapseNavbar()" has-authority="ROLE_MEMBER">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.question">Question</span>
+                                    <span data-translate="global.menu.entities.evaluationsGivenToMe">Evaluations given to me</span>
                                 </a>
-                            </li>
+                        </li>
                         <li ui-sref-active="active">
-                                <a ui-sref="answer" ng-click="vm.collapseNavbar()">
+                            <a ui-sref="evaluation" ng-click="vm.collapseNavbar()" has-authority="ROLE_MEMBER">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.answer">Answer</span>
+                                    <span data-translate="global.menu.entities.pendingEvaluations">Pending Evaluations</span>
                                 </a>
-                            </li>
+                        </li>
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -114,7 +114,7 @@
                         </li>
                     </ul>
                 </li>
-                <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
+                <li ng-class="{active: vm.$state.includes('admin')}" ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
                         <span>
                             <span class="glyphicon glyphicon-tower"></span>

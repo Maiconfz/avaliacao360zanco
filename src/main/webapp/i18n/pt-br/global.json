@@ -6,13 +6,13 @@
             "home": "Início",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Entidades",
-                "team": "Team",
-                "evaluationTemplate": "Evaluation Template",
-                "questionTemplate": "Question Template",
-                "evaluation": "Evaluation",
-                "question": "Question",
-                "answer": "Answer",
+                "main": "Área do Time",
+                "team": "Gerenciar Times",
+                "evaluationTemplate": "Gerenciar Templates de Avaliações",
+                "questionTemplate": "Gerenciar Temples de Perguntas",
+                "myTeams": "Meus times",
+                "evaluationsGivenToMe": "Avalições feitas para mim",
+                "pendingEvaluations": "Avaliações pendentes",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

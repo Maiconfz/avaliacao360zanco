@@ -6,13 +6,13 @@
             "home": "Home",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "Entities",
-                "team": "Team",
-                "evaluationTemplate": "Evaluation Template",
-                "questionTemplate": "Question Template",
-                "evaluation": "Evaluation",
-                "question": "Question",
-                "answer": "Answer",
+                "main": "Team Area",
+                "team": "Manage Teams",
+                "evaluationTemplate": "Manage Evaluation Templates",
+                "questionTemplate": "Manage Question Templates",
+                "myTeams": "My teams",
+                "evaluationsGivenToMe": "Evaluations given to me",
+                "pendingEvaluations": "Pending Evaluations",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
