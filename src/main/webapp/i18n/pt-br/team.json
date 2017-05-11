@@ -2,25 +2,25 @@
     "avaliacao360ZancoApp": {
         "team" : {
             "home": {
-                "title": "Teams",
-                "createLabel": "Criar novo Team",
-                "createOrEditLabel": "Criar ou editar Team"
+                "title": "Suas Equipes",
+                "createLabel": "Criar nova Equipe",
+                "createOrEditLabel": "Criar ou editar Equipe"
             },
-            "created": "Um novo Team é criado com o identificador {{ param }}",
-            "updated": "Um Team é atualizado com o identificador {{ param }}",
-            "deleted": "Um Team é deletado com o identificador {{ param }}",
+            "created": "Uma nova Equipe é criada com o identificador {{ param }}",
+            "updated": "Uma Equipe é atualizada com o identificador {{ param }}",
+            "deleted": "Uma Equipe é deletada com o identificador {{ param }}",
             "delete": {
-                "question": "Tem certeza de que deseja excluir Team {{ id }}?"
+                "question": "Tem certeza de que deseja excluir a Equipe {{ id }}?"
             },
             "detail": {
-                "title": "Team"
+                "title": "Equipe"
             },
-            "name": "Name",
-            "description": "Description",
-            "envaluationTemplates": "Envaluation Templates",
-            "evaluations": "Evaluations",
-            "leader": "Leader",
-            "members": "Members"
+            "name": "Nome",
+            "description": "Descrição",
+            "envaluationTemplates": "Templates de avaliação",
+            "evaluations": "Avaliações",
+            "leader": "Líder",
+            "members": "Membros"
         }
     }
 }
