@@ -29,11 +29,11 @@
         function save() {
             console.log("Saving new team");
             vm.isSaving = true;
-            Principal.identity().then(function (account) {
-                
-                var leader = account;
-                console.log("Got logged user as Team leader: ", leader);
-                vm.team.leader = leader;
+
+            var getUserPromise = Principal.identity(true);
+
+            getUserPromise.then(function (user) {
+                vm.team.leader = user;
 
                 if (vm.team.id !== null) {
                     Team.update(vm.team, onSaveSuccess, onSaveError);

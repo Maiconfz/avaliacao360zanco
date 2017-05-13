@@ -1,12 +1,13 @@
 package com.av360.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import com.av360.domain.Team;
 import com.av360.service.TeamService;
+import com.av360.service.UserService;
 import com.av360.web.rest.util.HeaderUtil;
 import com.av360.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
+import com.codahale.metrics.annotation.Timed;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -32,11 +33,13 @@ public class TeamResource {
     private final Logger log = LoggerFactory.getLogger(TeamResource.class);
 
     private static final String ENTITY_NAME = "team";
-        
-    private final TeamService teamService;
 
-    public TeamResource(TeamService teamService) {
+    private final TeamService teamService;
+    private final UserService userService;
+
+    public TeamResource(TeamService teamService, UserService userService) {
         this.teamService = teamService;
+        this.userService = userService;
     }
 
     /**
@@ -92,6 +95,21 @@ public class TeamResource {
     public ResponseEntity<List<Team>> getAllTeams(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Teams");
         Page<Team> page = teamService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/teams");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /teams : get all the teams.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of teams in body
+     */
+    @GetMapping("/teams/leader/{leaderId}")
+    @Timed
+    public ResponseEntity<List<Team>> getAllTeamsFromLeader(@ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Teams from current User");
+        Page<Team> page = teamService.findByLeader(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/teams");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

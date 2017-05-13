@@ -1,26 +1,24 @@
 package com.av360.service.impl;
 
-import com.av360.service.TeamService;
 import com.av360.domain.Team;
 import com.av360.repository.TeamRepository;
+import com.av360.service.TeamService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service Implementation for managing Team.
  */
 @Service
 @Transactional
-public class TeamServiceImpl implements TeamService{
+public class TeamServiceImpl implements TeamService {
 
     private final Logger log = LoggerFactory.getLogger(TeamServiceImpl.class);
-    
+
     private final TeamRepository teamRepository;
 
     public TeamServiceImpl(TeamRepository teamRepository) {
@@ -41,10 +39,10 @@ public class TeamServiceImpl implements TeamService{
     }
 
     /**
-     *  Get all the teams.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the teams.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -54,11 +52,18 @@ public class TeamServiceImpl implements TeamService{
         return result;
     }
 
+    @Override
+    public Page<Team> findByLeader(Pageable pageable) {
+        log.debug("Request to get all Teams where currentUser is Leader");
+        Page<Team> result = teamRepository.findByLeaderIsCurrentUser(pageable);
+        return result;
+    }
+
     /**
-     *  Get one team by id.
+     * Get one team by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -69,9 +74,9 @@ public class TeamServiceImpl implements TeamService{
     }
 
     /**
-     *  Delete the  team by id.
+     * Delete the  team by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {
