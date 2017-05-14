@@ -31,28 +31,6 @@
                 }]
             }
         })
-        .state('teams-by-leader', {
-            parent: 'entity',
-            url: '/teamsByLeader',
-            data: {
-                authorities: ['ROLE_LEADER'],
-                pageTitle: 'avaliacao360ZancoApp.team.home.title'
-            },
-            views: {
-                'content@': {
-                    templateUrl: 'app/entities/team/teams-by-leader.html',
-                    controller: 'TeamsByLeaderController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('team');
-                    $translatePartialLoader.addPart('global');
-                    return $translate.refresh();
-                }]
-            }
-        })
         .state('team-detail', {
             parent: 'team',
             url: '/team/{id}',
@@ -62,7 +40,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/team/teams-leader.html',
+                    templateUrl: 'app/entities/team/team-detail.html',
                     controller: 'TeamDetailController',
                     controllerAs: 'vm'
                 }
@@ -89,7 +67,7 @@
             parent: 'team-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -114,7 +92,7 @@
             parent: 'team',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -143,7 +121,7 @@
             parent: 'team',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -168,7 +146,7 @@
             parent: 'team',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_LEADER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

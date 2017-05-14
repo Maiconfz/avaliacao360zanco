@@ -2,7 +2,7 @@
     "avaliacao360ZancoApp": {
         "team" : {
             "home": {
-                "title": "Suas Equipes",
+                "title": "Minhas Equipes",
                 "createLabel": "Criar nova Equipe",
                 "createOrEditLabel": "Criar ou editar Equipe"
             },

@@ -20,6 +20,12 @@
                         <span class="hidden-sm" data-translate="global.menu.home">Home</span>
                     </a>
                 </li>
+                <li ui-sref-active="active" has-any-authority="ROLE_LEADER, ROLE_MEMBER">
+                    <a ui-sref="team" ng-click="vm.collapseNavbar()">
+                        <span class="glyphicon glyphicon-briefcase"></span>&nbsp;
+                        <span data-translate="global.menu.entities.team">My Teams</span>
+                    </a>
+                </li>
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
                 <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
@@ -33,20 +39,14 @@
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active" has-authority="ROLE_LEADER">
-                            <a ui-sref="teams-by-leader" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.team">Manage Teams</span>
-                                </a>
-                        </li>
-                        <li ui-sref-active="active" has-authority="ROLE_LEADER">
                             <a ui-sref="evaluation-template" ng-click="vm.collapseNavbar()">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span class="glyphicon glyphicon-list-alt"></span>&nbsp;
                                     <span data-translate="global.menu.entities.evaluationTemplate">Manage Evaluation Templates</span>
                                 </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="question-template" ng-click="vm.collapseNavbar()" has-authority="ROLE_LEADER">
-                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span class="glyphicon glyphicon-question-sign"></span>&nbsp;
                                     <span data-translate="global.menu.entities.questionTemplate">Manage Question Templates</span>
                                 </a>
                         </li>

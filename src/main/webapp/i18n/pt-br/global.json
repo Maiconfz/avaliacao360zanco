@@ -7,10 +7,9 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Área do Time",
-                "team": "Gerenciar Times",
+                "team": "Minhas Equipes",
                 "evaluationTemplate": "Gerenciar Templates de Avaliações",
                 "questionTemplate": "Gerenciar Temples de Perguntas",
-                "myTeams": "Meus times",
                 "evaluationsGivenToMe": "Avalições feitas para mim",
                 "pendingEvaluations": "Avaliações pendentes",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
