@@ -31,16 +31,38 @@
                 }]
             }
         })
+        .state('teams-by-leader', {
+            parent: 'entity',
+            url: '/teamsByLeader',
+            data: {
+                authorities: ['ROLE_LEADER'],
+                pageTitle: 'avaliacao360ZancoApp.team.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/team/teams-by-leader.html',
+                    controller: 'TeamsByLeaderController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('team');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        })
         .state('team-detail', {
             parent: 'team',
             url: '/team/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_LEADER'],
                 pageTitle: 'avaliacao360ZancoApp.team.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/team/team-detail.html',
+                    templateUrl: 'app/entities/team/teams-leader.html',
                     controller: 'TeamDetailController',
                     controllerAs: 'vm'
                 }
