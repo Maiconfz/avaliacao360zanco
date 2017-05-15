@@ -5,10 +5,9 @@
         .module('avaliacao360ZancoApp')
         .controller('TeamController', TeamController);
 
-    TeamController.$inject = ['$log', 'Principal', 'Team', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    TeamController.$inject = ['$log', 'Principal', 'Team', 'ParseLinks', 'AlertService', 'paginationConstants', 'AUTHORITY'];
 
-    function TeamController($log, Principal, Team, ParseLinks, AlertService, paginationConstants) {
-
+    function TeamController($log, Principal, Team, ParseLinks, AlertService, paginationConstants, AUTHORITY) {
         var vm = this;
 
         vm.teams = [];
@@ -28,32 +27,42 @@
             var getUser = Principal.identity();
 
             getUser.then(function(user){
-                Team.queryByLeader({
-                                page: vm.page,
-                                size: vm.itemsPerPage,
-                                sort: sort(),
-                                leaderId: user.id
-                            }, onSuccess, onError);
 
-                            function sort() {
-                                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
-                                if (vm.predicate !== 'id') {
-                                    result.push('id');
-                                }
-                                return result;
-                            }
+                if( user.authorities.indexOf(AUTHORITY.LEADER) !== -1 ) {
+                    Team.queryByLeader({
+                        page: vm.page,
+                        size: vm.itemsPerPage,
+                        sort: sort(),
+                        leaderId: user.id
+                    }, onSuccess, onError);
+                }else if(user.authorities.indexOf(AUTHORITY.MEMBER) !== -1 ){
+                    Team.queryByMember({
+                        page: vm.page,
+                        size: vm.itemsPerPage,
+                        sort: sort(),
+                        memberId: user.id
+                    }, onSuccess, onError);
+                }
 
-                            function onSuccess(data, headers) {
-                                vm.links = ParseLinks.parse(headers('link'));
-                                vm.totalItems = headers('X-Total-Count');
-                                for (var i = 0; i < data.length; i++) {
-                                    vm.teams.push(data[i]);
-                                }
-                            }
+                function sort() {
+                    var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                    if (vm.predicate !== 'id') {
+                        result.push('id');
+                    }
+                    return result;
+                }
 
-                            function onError(error) {
-                                AlertService.error(error.data.message);
-                            }
+                function onSuccess(data, headers) {
+                    vm.links = ParseLinks.parse(headers('link'));
+                    vm.totalItems = headers('X-Total-Count');
+                    for (var i = 0; i < data.length; i++) {
+                        vm.teams.push(data[i]);
+                    }
+                }
+
+                function onError(error) {
+                    AlertService.error(error.data.message);
+                }
             });
         }
 

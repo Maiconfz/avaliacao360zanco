@@ -1,7 +1,9 @@
 package com.av360.service.impl;
 
 import com.av360.domain.Team;
+import com.av360.domain.User;
 import com.av360.repository.TeamRepository;
+import com.av360.repository.UserRepository;
 import com.av360.service.TeamService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +22,11 @@ public class TeamServiceImpl implements TeamService {
     private final Logger log = LoggerFactory.getLogger(TeamServiceImpl.class);
 
     private final TeamRepository teamRepository;
+    private final UserRepository userRepository;
 
-    public TeamServiceImpl(TeamRepository teamRepository) {
+    public TeamServiceImpl(TeamRepository teamRepository, UserRepository userRepository) {
         this.teamRepository = teamRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -52,13 +56,6 @@ public class TeamServiceImpl implements TeamService {
         return result;
     }
 
-    @Override
-    public Page<Team> findByLeader(Pageable pageable) {
-        log.debug("Request to get all Teams where currentUser is Leader");
-        Page<Team> result = teamRepository.findByLeaderIsCurrentUser(pageable);
-        return result;
-    }
-
     /**
      * Get one team by id.
      *
@@ -83,4 +80,20 @@ public class TeamServiceImpl implements TeamService {
         log.debug("Request to delete Team : {}", id);
         teamRepository.delete(id);
     }
+
+    @Override
+    public Page<Team> findByLeader(Pageable pageable) {
+        log.debug("Request to get all Teams where currentUser is Leader");
+        Page<Team> result = teamRepository.findByLeaderIsCurrentUser(pageable);
+        return result;
+    }
+
+    @Override
+    public Page<Team> findByMember(Pageable pageable) {
+        log.debug("Request to get all Teams where currentUser is member");
+        User user = this.userRepository.findOneIsCurrentUser();
+        Page<Team> result = teamRepository.findAllWhereCurrentUserIsMember(pageable, user);
+        return result;
+    }
+
 }

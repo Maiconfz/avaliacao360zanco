@@ -99,17 +99,20 @@ public class TeamResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    /**
-     * GET  /teams : get all the teams.
-     *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of teams in body
-     */
     @GetMapping("/teams/leader/{leaderId}")
     @Timed
     public ResponseEntity<List<Team>> getAllTeamsFromLeader(@ApiParam Pageable pageable) {
-        log.debug("REST request to get a page of Teams from current User");
+        log.debug("REST request to get a page of Teams from current User as Leader");
         Page<Team> page = teamService.findByLeader(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/teams");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/teams/member/{memberId}")
+    @Timed
+    public ResponseEntity<List<Team>> getAllTeamsFromMember(@ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Teams from current User as Member");
+        Page<Team> page = teamService.findByMember(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/teams");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

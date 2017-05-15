@@ -115,7 +115,11 @@ gulp.task('ngconstant:dev', function () {
         name: 'avaliacao360ZancoApp',
         constants: {
             VERSION: util.parseVersion(),
-            DEBUG_INFO_ENABLED: true
+            DEBUG_INFO_ENABLED: true,
+            AUTHORITY: {
+                LEADER: 'ROLE_LEADER',
+                MEMBER: 'ROLE_MEMBER'
+            }
         },
         template: config.constantTemplate,
         stream: true
@@ -129,7 +133,11 @@ gulp.task('ngconstant:prod', function () {
         name: 'avaliacao360ZancoApp',
         constants: {
             VERSION: util.parseVersion(),
-            DEBUG_INFO_ENABLED: false
+            DEBUG_INFO_ENABLED: false,
+            AUTHORITY: {
+                LEADER: 'ROLE_LEADER',
+                MEMBER: 'ROLE_MEMBER'
+            }
         },
         template: config.constantTemplate,
         stream: true

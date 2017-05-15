@@ -12,6 +12,7 @@
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'queryByLeader': {url: ( resourceUrl + '/leader/:leaderId' ), method: 'GET', isArray: true},
+            'queryByMember': {url: ( resourceUrl + '/member/:memberId'), method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
