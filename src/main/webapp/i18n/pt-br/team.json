@@ -4,7 +4,11 @@
             "home": {
                 "title": "Minhas Equipes",
                 "createLabel": "Criar nova Equipe",
-                "createOrEditLabel": "Criar ou editar Equipe"
+                "createOrEditLabel": "Criar ou editar Equipe",
+                "title-sub": {
+                    "member": "Equipes que eu sou membro",
+                    "leader": "Equipes que eu gerencio"
+                }
             },
             "created": "Uma nova Equipe é criada com o identificador {{ param }}",
             "updated": "Uma Equipe é atualizada com o identificador {{ param }}",

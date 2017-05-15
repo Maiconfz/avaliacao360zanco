@@ -1,10 +1,14 @@
 {
     "avaliacao360ZancoApp": {
-        "team" : {
+        "team": {
             "home": {
                 "title": "My Teams",
                 "createLabel": "Create a new Team",
-                "createOrEditLabel": "Create or edit a Team"
+                "createOrEditLabel": "Create or edit a Team",
+                "title-sub": {
+                    "member": "Teams that I member of",
+                    "leader": "My managed teams"
+                }
             },
             "created": "A new Team is created with identifier {{ param }}",
             "updated": "A Team is updated with identifier {{ param }}",
