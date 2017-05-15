@@ -35,7 +35,7 @@
             parent: 'team',
             url: '/team/{id}',
             data: {
-                authorities: ['ROLE_LEADER'],
+                authorities: ['ROLE_LEADER, ROLE_MEMBER'],
                 pageTitle: 'avaliacao360ZancoApp.team.detail.title'
             },
             views: {

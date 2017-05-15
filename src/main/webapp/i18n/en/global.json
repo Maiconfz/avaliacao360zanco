@@ -8,10 +8,10 @@
             "entities": {
                 "main": "Team Area",
                 "team": "My Teams",
-                "evaluationTemplate": "Manage Evaluation Templates",
-                "questionTemplate": "Manage Question Templates",
-                "evaluationsGivenToMe": "Evaluations given to me",
-                "pendingEvaluations": "Pending Evaluations",
+                "evaluationTemplate": "Evaluation Templates",
+                "questionTemplate": "Question Templates",
+                "evaluations": "Evaluations",
+                "questions": "Questions",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -8,10 +8,10 @@
             "entities": {
                 "main": "Área do Time",
                 "team": "Minhas Equipes",
-                "evaluationTemplate": "Gerenciar Templates de Avaliações",
-                "questionTemplate": "Gerenciar Temples de Perguntas",
-                "evaluationsGivenToMe": "Avalições feitas para mim",
-                "pendingEvaluations": "Avaliações pendentes",
+                "evaluationTemplate": "Templates de Avaliações",
+                "questionTemplate": "Temples de Perguntas",
+                "evaluations": "Avaliações",
+                "questions": "Perguntas",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
