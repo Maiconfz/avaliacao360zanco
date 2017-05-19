@@ -17,10 +17,10 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class EvaluationTemplateServiceImpl implements EvaluationTemplateService{
+public class EvaluationTemplateServiceImpl implements EvaluationTemplateService {
 
     private final Logger log = LoggerFactory.getLogger(EvaluationTemplateServiceImpl.class);
-    
+
     private final EvaluationTemplateRepository evaluationTemplateRepository;
 
     public EvaluationTemplateServiceImpl(EvaluationTemplateRepository evaluationTemplateRepository) {
@@ -51,6 +51,14 @@ public class EvaluationTemplateServiceImpl implements EvaluationTemplateService{
     public Page<EvaluationTemplate> findAll(Pageable pageable) {
         log.debug("Request to get all EvaluationTemplates");
         Page<EvaluationTemplate> result = evaluationTemplateRepository.findAll(pageable);
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<EvaluationTemplate> findAllByTeam(Pageable pageable, Long teamId) {
+        log.debug("Request to get all EvaluationTemplates for team {}", teamId);
+        Page<EvaluationTemplate> result = evaluationTemplateRepository.findAllByTeam(pageable, teamId);
         return result;
     }
 

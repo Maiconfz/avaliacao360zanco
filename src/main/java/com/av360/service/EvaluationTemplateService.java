@@ -26,6 +26,8 @@ public interface EvaluationTemplateService {
      */
     Page<EvaluationTemplate> findAll(Pageable pageable);
 
+    Page<EvaluationTemplate> findAllByTeam(Pageable pageable, Long teamId);
+
     /**
      *  Get the "id" evaluationTemplate.
      *

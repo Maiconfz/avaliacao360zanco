@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Spring Data JPA repository for the Team entity.
  */
-@SuppressWarnings("unused")
 public interface TeamRepository extends JpaRepository<Team,Long> {
 
     @Query("select team from Team team where team.leader.login = ?#{principal.username}")

@@ -1,16 +1,16 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('avaliacao360ZancoApp')
         .controller('EvaluationTemplateController', EvaluationTemplateController);
 
-    EvaluationTemplateController.$inject = ['EvaluationTemplate', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    EvaluationTemplateController.$inject = ['$log', 'EvaluationTemplate', 'ParseLinks', 'AlertService', 'paginationConstants', 'filterTeam'];
 
-    function EvaluationTemplateController(EvaluationTemplate, ParseLinks, AlertService, paginationConstants) {
-
+    function EvaluationTemplateController($log, EvaluationTemplate, ParseLinks, AlertService, paginationConstants, filterTeam) {
+        $log.debug(filterTeam);
         var vm = this;
-
+        
         vm.evaluationTemplates = [];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
@@ -22,13 +22,16 @@
         vm.reset = reset;
         vm.reverse = true;
 
+        vm.filterTeam = filterTeam;
+
         loadAll();
 
-        function loadAll () {
-            EvaluationTemplate.query({
+        function loadAll() {
+            EvaluationTemplate.queryByTeam({
                 page: vm.page,
                 size: vm.itemsPerPage,
-                sort: sort()
+                sort: sort(),
+                teamId: filterTeam.id
             }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -51,7 +54,7 @@
             }
         }
 
-        function reset () {
+        function reset() {
             vm.page = 0;
             vm.evaluationTemplates = [];
             loadAll();

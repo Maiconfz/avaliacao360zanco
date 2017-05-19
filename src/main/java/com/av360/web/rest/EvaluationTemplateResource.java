@@ -32,7 +32,7 @@ public class EvaluationTemplateResource {
     private final Logger log = LoggerFactory.getLogger(EvaluationTemplateResource.class);
 
     private static final String ENTITY_NAME = "evaluationTemplate";
-        
+
     private final EvaluationTemplateService evaluationTemplateService;
 
     public EvaluationTemplateResource(EvaluationTemplateService evaluationTemplateService) {
@@ -48,15 +48,16 @@ public class EvaluationTemplateResource {
      */
     @PostMapping("/evaluation-templates")
     @Timed
-    public ResponseEntity<EvaluationTemplate> createEvaluationTemplate(@Valid @RequestBody EvaluationTemplate evaluationTemplate) throws URISyntaxException {
+    public ResponseEntity<EvaluationTemplate> createEvaluationTemplate(
+            @Valid @RequestBody EvaluationTemplate evaluationTemplate) throws URISyntaxException {
         log.debug("REST request to save EvaluationTemplate : {}", evaluationTemplate);
         if (evaluationTemplate.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new evaluationTemplate cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists",
+                    "A new evaluationTemplate cannot already have an ID")).body(null);
         }
         EvaluationTemplate result = evaluationTemplateService.save(evaluationTemplate);
         return ResponseEntity.created(new URI("/api/evaluation-templates/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
 
     /**
@@ -70,15 +71,16 @@ public class EvaluationTemplateResource {
      */
     @PutMapping("/evaluation-templates")
     @Timed
-    public ResponseEntity<EvaluationTemplate> updateEvaluationTemplate(@Valid @RequestBody EvaluationTemplate evaluationTemplate) throws URISyntaxException {
+    public ResponseEntity<EvaluationTemplate> updateEvaluationTemplate(
+            @Valid @RequestBody EvaluationTemplate evaluationTemplate) throws URISyntaxException {
         log.debug("REST request to update EvaluationTemplate : {}", evaluationTemplate);
         if (evaluationTemplate.getId() == null) {
             return createEvaluationTemplate(evaluationTemplate);
         }
         EvaluationTemplate result = evaluationTemplateService.save(evaluationTemplate);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, evaluationTemplate.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, evaluationTemplate.getId().toString()))
+                .body(result);
     }
 
     /**
@@ -92,6 +94,16 @@ public class EvaluationTemplateResource {
     public ResponseEntity<List<EvaluationTemplate>> getAllEvaluationTemplates(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of EvaluationTemplates");
         Page<EvaluationTemplate> page = evaluationTemplateService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/evaluation-templates");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/evaluation-templates/team/{teamId}")
+    @Timed
+    public ResponseEntity<List<EvaluationTemplate>> getAllEvaluationTemplatesFromTeam(@ApiParam Pageable pageable,
+            @PathVariable Long teamId) {
+        log.debug("REST request to get a page of EvaluationTemplates from team {}", teamId);
+        Page<EvaluationTemplate> page = evaluationTemplateService.findAllByTeam(pageable, teamId);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/evaluation-templates");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
