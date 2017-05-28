@@ -13,31 +13,37 @@ public interface QuestionTemplateService {
     /**
      * Save a questionTemplate.
      *
-     * @param questionTemplate the entity to save
+     * @param questionTemplate
+     *            the entity to save
      * @return the persisted entity
      */
     QuestionTemplate save(QuestionTemplate questionTemplate);
 
     /**
-     *  Get all the questionTemplates.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the questionTemplates.
+     * 
+     * @param pageable
+     *            the pagination information
+     * @return the list of entities
      */
     Page<QuestionTemplate> findAll(Pageable pageable);
 
+    Page<QuestionTemplate> findAllByEvaluationTemplate(Pageable pageable, Long evaluationTemplateId);
+
     /**
-     *  Get the "id" questionTemplate.
+     * Get the "id" questionTemplate.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id
+     *            the id of the entity
+     * @return the entity
      */
     QuestionTemplate findOne(Long id);
 
     /**
-     *  Delete the "id" questionTemplate.
+     * Delete the "id" questionTemplate.
      *
-     *  @param id the id of the entity
+     * @param id
+     *            the id of the entity
      */
     void delete(Long id);
 }

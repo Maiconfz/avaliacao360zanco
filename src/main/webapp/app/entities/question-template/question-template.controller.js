@@ -1,14 +1,11 @@
 (function() {
     'use strict';
 
-    angular
-        .module('avaliacao360ZancoApp')
-        .controller('QuestionTemplateController', QuestionTemplateController);
+    angular.module('avaliacao360ZancoApp').controller('QuestionTemplateController', QuestionTemplateController);
 
-    QuestionTemplateController.$inject = ['QuestionTemplate', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    QuestionTemplateController.$inject = [ '$log', 'QuestionTemplate', 'ParseLinks', 'AlertService', 'paginationConstants', 'teamFilter', 'evaluationTemplateFilter' ];
 
-    function QuestionTemplateController(QuestionTemplate, ParseLinks, AlertService, paginationConstants) {
-
+    function QuestionTemplateController($log, QuestionTemplate, ParseLinks, AlertService, paginationConstants, teamFilter, evaluationTemplateFilter) {
         var vm = this;
 
         vm.questionTemplates = [];
@@ -16,22 +13,26 @@
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.page = 0;
         vm.links = {
-            last: 0
+            last : 0
         };
         vm.predicate = 'id';
         vm.reset = reset;
         vm.reverse = true;
+        vm.teamFilter = teamFilter;
+        vm.evaluationTemplateFilter = evaluationTemplateFilter;
 
         loadAll();
 
-        function loadAll () {
-            QuestionTemplate.query({
-                page: vm.page,
-                size: vm.itemsPerPage,
-                sort: sort()
+        function loadAll() {
+            QuestionTemplate.queryByEvaluationTemplate({
+                page : vm.page,
+                size : vm.itemsPerPage,
+                sort : sort(),
+                evaluationTemplateId : vm.evaluationTemplateFilter.id
             }, onSuccess, onError);
+
             function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                var result = [ vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc') ];
                 if (vm.predicate !== 'id') {
                     result.push('id');
                 }
@@ -51,7 +52,7 @@
             }
         }
 
-        function reset () {
+        function reset() {
             vm.page = 0;
             vm.questionTemplates = [];
             loadAll();

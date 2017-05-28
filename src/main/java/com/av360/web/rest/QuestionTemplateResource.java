@@ -32,7 +32,7 @@ public class QuestionTemplateResource {
     private final Logger log = LoggerFactory.getLogger(QuestionTemplateResource.class);
 
     private static final String ENTITY_NAME = "questionTemplate";
-        
+
     private final QuestionTemplateService questionTemplateService;
 
     public QuestionTemplateResource(QuestionTemplateService questionTemplateService) {
@@ -40,11 +40,15 @@ public class QuestionTemplateResource {
     }
 
     /**
-     * POST  /question-templates : Create a new questionTemplate.
+     * POST /question-templates : Create a new questionTemplate.
      *
-     * @param questionTemplate the questionTemplate to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new questionTemplate, or with status 400 (Bad Request) if the questionTemplate has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param questionTemplate
+     *            the questionTemplate to create
+     * @return the ResponseEntity with status 201 (Created) and with body the
+     *         new questionTemplate, or with status 400 (Bad Request) if the
+     *         questionTemplate has already an ID
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
      */
     @PostMapping("/question-templates")
     @Timed
@@ -54,19 +58,20 @@ public class QuestionTemplateResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new questionTemplate cannot already have an ID")).body(null);
         }
         QuestionTemplate result = questionTemplateService.save(questionTemplate);
-        return ResponseEntity.created(new URI("/api/question-templates/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        return ResponseEntity.created(new URI("/api/question-templates/" + result.getId())).headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
 
     /**
-     * PUT  /question-templates : Updates an existing questionTemplate.
+     * PUT /question-templates : Updates an existing questionTemplate.
      *
-     * @param questionTemplate the questionTemplate to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated questionTemplate,
-     * or with status 400 (Bad Request) if the questionTemplate is not valid,
-     * or with status 500 (Internal Server Error) if the questionTemplate couldnt be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param questionTemplate
+     *            the questionTemplate to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     *         questionTemplate, or with status 400 (Bad Request) if the
+     *         questionTemplate is not valid, or with status 500 (Internal
+     *         Server Error) if the questionTemplate couldnt be updated
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
      */
     @PutMapping("/question-templates")
     @Timed
@@ -76,16 +81,16 @@ public class QuestionTemplateResource {
             return createQuestionTemplate(questionTemplate);
         }
         QuestionTemplate result = questionTemplateService.save(questionTemplate);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, questionTemplate.getId().toString()))
-            .body(result);
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, questionTemplate.getId().toString())).body(result);
     }
 
     /**
-     * GET  /question-templates : get all the questionTemplates.
+     * GET /question-templates : get all the questionTemplates.
      *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of questionTemplates in body
+     * @param pageable
+     *            the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of
+     *         questionTemplates in body
      */
     @GetMapping("/question-templates")
     @Timed
@@ -96,11 +101,22 @@ public class QuestionTemplateResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/question-templates/evaluation-template/{evaluationTemplateId}")
+    @Timed
+    public ResponseEntity<List<QuestionTemplate>> getAllQuestionTemplatesByEvaluationTemplate(@ApiParam Pageable pageable, @PathVariable Long evaluationTemplateId) {
+        log.debug("REST request to get a page of QuestionTemplates");
+        Page<QuestionTemplate> page = questionTemplateService.findAllByEvaluationTemplate(pageable, evaluationTemplateId);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/question-templates/evaluation-template/" + evaluationTemplateId);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
     /**
-     * GET  /question-templates/:id : get the "id" questionTemplate.
+     * GET /question-templates/:id : get the "id" questionTemplate.
      *
-     * @param id the id of the questionTemplate to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the questionTemplate, or with status 404 (Not Found)
+     * @param id
+     *            the id of the questionTemplate to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the
+     *         questionTemplate, or with status 404 (Not Found)
      */
     @GetMapping("/question-templates/{id}")
     @Timed
@@ -111,9 +127,10 @@ public class QuestionTemplateResource {
     }
 
     /**
-     * DELETE  /question-templates/:id : delete the "id" questionTemplate.
+     * DELETE /question-templates/:id : delete the "id" questionTemplate.
      *
-     * @param id the id of the questionTemplate to delete
+     * @param id
+     *            the id of the questionTemplate to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/question-templates/{id}")

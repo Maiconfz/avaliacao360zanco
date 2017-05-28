@@ -1,31 +1,31 @@
 (function() {
     'use strict';
 
-    angular
-        .module('avaliacao360ZancoApp')
-        .controller('EvaluationTemplateDialogController', EvaluationTemplateDialogController);
+    angular.module('avaliacao360ZancoApp').controller('EvaluationTemplateDialogController', EvaluationTemplateDialogController);
 
-    EvaluationTemplateDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'EvaluationTemplate', 'QuestionTemplate', 'Team'];
+    EvaluationTemplateDialogController.$inject = [ '$log', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'EvaluationTemplate' ];
 
-    function EvaluationTemplateDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, EvaluationTemplate, QuestionTemplate, Team) {
+    function EvaluationTemplateDialogController($log, $timeout, $scope, $stateParams, $uibModalInstance, entity, EvaluationTemplate) {
         var vm = this;
 
         vm.evaluationTemplate = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.questiontemplates = QuestionTemplate.query();
-        vm.teams = Team.query();
 
-        $timeout(function (){
+        $timeout(function() {
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        function clear () {
+        function clear() {
             $uibModalInstance.dismiss('cancel');
         }
 
-        function save () {
+        function save() {
             vm.isSaving = true;
+            vm.evaluationTemplate.team = {
+                id : $stateParams.teamId
+            };
+            $log.info('Saving: ', vm.evaluationTemplate);
             if (vm.evaluationTemplate.id !== null) {
                 EvaluationTemplate.update(vm.evaluationTemplate, onSaveSuccess, onSaveError);
             } else {
@@ -33,16 +33,14 @@
             }
         }
 
-        function onSaveSuccess (result) {
+        function onSaveSuccess(result) {
             $scope.$emit('avaliacao360ZancoApp:evaluationTemplateUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }
 
-        function onSaveError () {
+        function onSaveError() {
             vm.isSaving = false;
         }
-
-
     }
 })();

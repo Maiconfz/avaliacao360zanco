@@ -1,21 +1,18 @@
 <div>
-    <h2><span data-translate="avaliacao360ZancoApp.evaluationTemplate.home.title">Evaluation Templates for</span><br/>
-        <small>Team {{vm.filterTeam.name}}</small>
+    <h2>
+        <span data-translate="avaliacao360ZancoApp.evaluationTemplate.home.title">Evaluation Templates for</span><br /> <small>Team {{vm.filterTeam.name}}</small>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="evaluation-template-team.new">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="avaliacao360ZancoApp.evaluationTemplate.home.createLabel">
-                        Create new Evaluation Template
-                    </span>
+                    <span class="glyphicon glyphicon-plus"></span> <span data-translate="avaliacao360ZancoApp.evaluationTemplate.home.createLabel"> Create new Evaluation Template </span>
                 </button>
             </div>
         </div>
     </div>
-    <br/>
+    <br />
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
@@ -34,16 +31,16 @@
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit" ui-sref="evaluation-template-team-detail({id:evaluationTemplate.id})" class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                                <span class="glyphicon glyphicon-eye-open"></span> <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit" ui-sref="evaluation-template-team.edit({id:evaluationTemplate.id})" class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                                <span class="glyphicon glyphicon-pencil"></span> <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit" ui-sref="evaluation-template-team.delete({id:evaluationTemplate.id})" class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                                <span class="glyphicon glyphicon-remove-circle"></span> <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                            <button type="submit" ui-sref="team-evaluation-template-question-templates({teamId: vm.filterTeam.id, etId: evaluationTemplate.id})" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-question-sign"></span> <span data-translate="global.menu.entities.questionTemplate">Question Templates</span>
                             </button>
                         </div>
                     </td>

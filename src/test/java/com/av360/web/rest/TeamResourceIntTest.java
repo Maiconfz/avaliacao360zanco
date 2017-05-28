@@ -71,10 +71,7 @@ public class TeamResourceIntTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         TeamResource teamResource = new TeamResource(teamService);
-        this.restTeamMockMvc = MockMvcBuilders.standaloneSetup(teamResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setMessageConverters(jacksonMessageConverter).build();
+        this.restTeamMockMvc = MockMvcBuilders.standaloneSetup(teamResource).setCustomArgumentResolvers(pageableArgumentResolver).setControllerAdvice(exceptionTranslator).setMessageConverters(jacksonMessageConverter).build();
     }
 
     /**
@@ -84,9 +81,7 @@ public class TeamResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static Team createEntity(EntityManager em) {
-        Team team = new Team()
-            .name(DEFAULT_NAME)
-            .description(DEFAULT_DESCRIPTION);
+        Team team = new Team().name(DEFAULT_NAME).description(DEFAULT_DESCRIPTION);
         // Add required entity
         User leader = UserResourceIntTest.createEntity(em);
         em.persist(leader);
@@ -106,10 +101,7 @@ public class TeamResourceIntTest {
         int databaseSizeBeforeCreate = teamRepository.findAll().size();
 
         // Create the Team
-        restTeamMockMvc.perform(post("/api/teams")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(team)))
-            .andExpect(status().isCreated());
+        restTeamMockMvc.perform(post("/api/teams").contentType(TestUtil.APPLICATION_JSON_UTF8).content(TestUtil.convertObjectToJsonBytes(team))).andExpect(status().isCreated());
 
         // Validate the Team in the database
         List<Team> teamList = teamRepository.findAll();
@@ -127,11 +119,9 @@ public class TeamResourceIntTest {
         // Create the Team with an existing ID
         team.setId(1L);
 
-        // An entity with an existing ID cannot be created, so this API call must fail
-        restTeamMockMvc.perform(post("/api/teams")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(team)))
-            .andExpect(status().isBadRequest());
+        // An entity with an existing ID cannot be created, so this API call
+        // must fail
+        restTeamMockMvc.perform(post("/api/teams").contentType(TestUtil.APPLICATION_JSON_UTF8).content(TestUtil.convertObjectToJsonBytes(team))).andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
         List<Team> teamList = teamRepository.findAll();
@@ -147,10 +137,7 @@ public class TeamResourceIntTest {
 
         // Create the Team, which fails.
 
-        restTeamMockMvc.perform(post("/api/teams")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(team)))
-            .andExpect(status().isBadRequest());
+        restTeamMockMvc.perform(post("/api/teams").contentType(TestUtil.APPLICATION_JSON_UTF8).content(TestUtil.convertObjectToJsonBytes(team))).andExpect(status().isBadRequest());
 
         List<Team> teamList = teamRepository.findAll();
         assertThat(teamList).hasSize(databaseSizeBeforeTest);
@@ -163,12 +150,7 @@ public class TeamResourceIntTest {
         teamRepository.saveAndFlush(team);
 
         // Get all the teamList
-        restTeamMockMvc.perform(get("/api/teams?sort=id,desc"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(team.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+        restTeamMockMvc.perform(get("/api/teams?sort=id,desc")).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.[*].id").value(hasItem(team.getId().intValue()))).andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString()))).andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
 
     @Test
@@ -178,20 +160,14 @@ public class TeamResourceIntTest {
         teamRepository.saveAndFlush(team);
 
         // Get the team
-        restTeamMockMvc.perform(get("/api/teams/{id}", team.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(team.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+        restTeamMockMvc.perform(get("/api/teams/{id}", team.getId())).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(jsonPath("$.id").value(team.getId().intValue())).andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString())).andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
 
     @Test
     @Transactional
     public void getNonExistingTeam() throws Exception {
         // Get the team
-        restTeamMockMvc.perform(get("/api/teams/{id}", Long.MAX_VALUE))
-            .andExpect(status().isNotFound());
+        restTeamMockMvc.perform(get("/api/teams/{id}", Long.MAX_VALUE)).andExpect(status().isNotFound());
     }
 
     @Test
@@ -204,14 +180,9 @@ public class TeamResourceIntTest {
 
         // Update the team
         Team updatedTeam = teamRepository.findOne(team.getId());
-        updatedTeam
-            .name(UPDATED_NAME)
-            .description(UPDATED_DESCRIPTION);
+        updatedTeam.name(UPDATED_NAME).description(UPDATED_DESCRIPTION);
 
-        restTeamMockMvc.perform(put("/api/teams")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedTeam)))
-            .andExpect(status().isOk());
+        restTeamMockMvc.perform(put("/api/teams").contentType(TestUtil.APPLICATION_JSON_UTF8).content(TestUtil.convertObjectToJsonBytes(updatedTeam))).andExpect(status().isOk());
 
         // Validate the Team in the database
         List<Team> teamList = teamRepository.findAll();
@@ -228,11 +199,9 @@ public class TeamResourceIntTest {
 
         // Create the Team
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
-        restTeamMockMvc.perform(put("/api/teams")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(team)))
-            .andExpect(status().isCreated());
+        // If the entity doesn't have an ID, it will be created instead of just
+        // being updated
+        restTeamMockMvc.perform(put("/api/teams").contentType(TestUtil.APPLICATION_JSON_UTF8).content(TestUtil.convertObjectToJsonBytes(team))).andExpect(status().isCreated());
 
         // Validate the Team in the database
         List<Team> teamList = teamRepository.findAll();
@@ -248,9 +217,7 @@ public class TeamResourceIntTest {
         int databaseSizeBeforeDelete = teamRepository.findAll().size();
 
         // Get the team
-        restTeamMockMvc.perform(delete("/api/teams/{id}", team.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isOk());
+        restTeamMockMvc.perform(delete("/api/teams/{id}", team.getId()).accept(TestUtil.APPLICATION_JSON_UTF8)).andExpect(status().isOk());
 
         // Validate the database is empty
         List<Team> teamList = teamRepository.findAll();

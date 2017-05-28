@@ -10,17 +10,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * Service Implementation for managing QuestionTemplate.
  */
 @Service
 @Transactional
-public class QuestionTemplateServiceImpl implements QuestionTemplateService{
+public class QuestionTemplateServiceImpl implements QuestionTemplateService {
 
     private final Logger log = LoggerFactory.getLogger(QuestionTemplateServiceImpl.class);
-    
+
     private final QuestionTemplateRepository questionTemplateRepository;
 
     public QuestionTemplateServiceImpl(QuestionTemplateRepository questionTemplateRepository) {
@@ -30,7 +28,8 @@ public class QuestionTemplateServiceImpl implements QuestionTemplateService{
     /**
      * Save a questionTemplate.
      *
-     * @param questionTemplate the entity to save
+     * @param questionTemplate
+     *            the entity to save
      * @return the persisted entity
      */
     @Override
@@ -41,10 +40,11 @@ public class QuestionTemplateServiceImpl implements QuestionTemplateService{
     }
 
     /**
-     *  Get all the questionTemplates.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the questionTemplates.
+     * 
+     * @param pageable
+     *            the pagination information
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -54,11 +54,20 @@ public class QuestionTemplateServiceImpl implements QuestionTemplateService{
         return result;
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Page<QuestionTemplate> findAllByEvaluationTemplate(Pageable pageable, Long evaluationTemplateId) {
+        log.debug("Request to get all QuestionTemplates by EvaluationTemplate {}", evaluationTemplateId);
+        Page<QuestionTemplate> result = questionTemplateRepository.findAllByEvaluationTemplate(pageable, evaluationTemplateId);
+        return result;
+    }
+
     /**
-     *  Get one questionTemplate by id.
+     * Get one questionTemplate by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id
+     *            the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -69,9 +78,10 @@ public class QuestionTemplateServiceImpl implements QuestionTemplateService{
     }
 
     /**
-     *  Delete the  questionTemplate by id.
+     * Delete the questionTemplate by id.
      *
-     *  @param id the id of the entity
+     * @param id
+     *            the id of the entity
      */
     @Override
     public void delete(Long id) {
