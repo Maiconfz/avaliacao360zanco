@@ -3,6 +3,7 @@ package com.av360.web.rest.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
+
 /**
  * Utility class for HTTP headers creation.
  */
@@ -32,6 +33,10 @@ public final class HeaderUtil {
 
     public static HttpHeaders createEntityDeletionAlert(String entityName, String param) {
         return createAlert(APPLICATION_NAME + "." + entityName + ".deleted", param);
+    }
+
+    public static HttpHeaders createEntitySubmitAlert(String entityName, String param) {
+        return createAlert(APPLICATION_NAME + "." + entityName + ".submitted", param);
     }
 
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
