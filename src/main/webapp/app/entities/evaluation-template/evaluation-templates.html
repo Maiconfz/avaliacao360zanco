@@ -40,7 +40,10 @@
                                 <span class="glyphicon glyphicon-remove-circle"></span> <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
                             </button>
                             <button type="submit" ui-sref="team-evaluation-template-question-templates({teamId: vm.filterTeam.id, etId: evaluationTemplate.id})" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-question-sign"></span> <span data-translate="global.menu.entities.questionTemplate">Question Templates</span>
+                                <span class="glyphicon glyphicon-question-sign"></span> <span class="hidden-sm-down" data-translate="global.menu.entities.questionTemplate">Question Templates</span>
+                            </button>
+                            <button type="submit" class="btn btn-default btn-sm" ng-click="vm.submitEt(evaluationTemplate.id)">
+                                <span class="glyphicon glyphicon-send"></span> <span class="hidden-sm-down" data-translate="global.common.submit">Submit</span>
                             </button>
                         </div>
                     </td>

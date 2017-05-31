@@ -1,24 +1,25 @@
 {
-    "avaliacao360ZancoApp": {
-        "evaluationTemplate" : {
-            "home": {
-                "title": "Evaluation Templates",
-                "createLabel": "Criar novo Evaluation Template",
-                "createOrEditLabel": "Criar ou editar Evaluation Template"
-            },
-            "created": "Um novo Evaluation Template é criado com o identificador {{ param }}",
-            "updated": "Um Evaluation Template é atualizado com o identificador {{ param }}",
-            "deleted": "Um Evaluation Template é deletado com o identificador {{ param }}",
-            "delete": {
-                "question": "Tem certeza de que deseja excluir Evaluation Template {{ id }}?"
-            },
-            "detail": {
-                "title": "Evaluation Template"
-            },
-            "name": "Name",
-            "description": "Description",
-            "questionTemplates": "Question Templates",
-            "team": "Team"
-        }
-    }
+	"avaliacao360ZancoApp": {
+		"evaluationTemplate": {
+			"home": {
+				"title": "Evaluation Templates",
+				"createLabel": "Criar novo Evaluation Template",
+				"createOrEditLabel": "Criar ou editar Evaluation Template"
+			},
+			"created": "Um novo Evaluation Template é criado com o identificador {{ param }}",
+			"updated": "Um Evaluation Template é atualizado com o identificador {{ param }}",
+			"deleted": "Um Evaluation Template é deletado com o identificador {{ param }}",
+			"submitted": "As avalições foram enviadas com sucesso",
+			"delete": {
+				"question": "Tem certeza de que deseja excluir Evaluation Template {{ id }}?"
+			},
+			"detail": {
+				"title": "Evaluation Template"
+			},
+			"name": "Name",
+			"description": "Description",
+			"questionTemplates": "Question Templates",
+			"team": "Team"
+		}
+	}
 }

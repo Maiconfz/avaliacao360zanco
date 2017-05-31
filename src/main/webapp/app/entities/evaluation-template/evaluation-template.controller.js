@@ -1,25 +1,24 @@
-(function () {
+(function() {
     'use strict';
 
-    angular
-        .module('avaliacao360ZancoApp')
-        .controller('EvaluationTemplateController', EvaluationTemplateController);
+    angular.module('avaliacao360ZancoApp').controller('EvaluationTemplateController', EvaluationTemplateController);
 
-    EvaluationTemplateController.$inject = ['$log', 'EvaluationTemplate', 'ParseLinks', 'AlertService', 'paginationConstants', 'filterTeam'];
+    EvaluationTemplateController.$inject = [ '$log', 'EvaluationTemplate', 'ParseLinks', 'AlertService', 'paginationConstants', 'filterTeam' ];
 
     function EvaluationTemplateController($log, EvaluationTemplate, ParseLinks, AlertService, paginationConstants, filterTeam) {
         $log.debug(filterTeam);
         var vm = this;
-        
+
         vm.evaluationTemplates = [];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
         vm.page = 0;
         vm.links = {
-            last: 0
+            last : 0
         };
         vm.predicate = 'id';
         vm.reset = reset;
+        vm.submitEt = submitEt;
         vm.reverse = true;
 
         vm.filterTeam = filterTeam;
@@ -28,13 +27,13 @@
 
         function loadAll() {
             EvaluationTemplate.queryByTeam({
-                page: vm.page,
-                size: vm.itemsPerPage,
-                sort: sort(),
-                teamId: filterTeam.id
+                page : vm.page,
+                size : vm.itemsPerPage,
+                sort : sort(),
+                teamId : filterTeam.id
             }, onSuccess, onError);
             function sort() {
-                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                var result = [ vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc') ];
                 if (vm.predicate !== 'id') {
                     result.push('id');
                 }
@@ -63,6 +62,16 @@
         function loadPage(page) {
             vm.page = page;
             loadAll();
+        }
+
+        function submitEt(evaluationTemplateId) {
+            $log.debug("Submiting evaluationTemplate: ", evaluationTemplateId);
+
+            var promise = EvaluationTemplate.submit(evaluationTemplateId).$promise;
+
+            promise.then(function(data) {
+                $log.debug('response: ', data);
+            });
         }
     }
 })();
