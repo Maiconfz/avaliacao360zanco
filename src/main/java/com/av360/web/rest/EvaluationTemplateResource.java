@@ -155,6 +155,8 @@ public class EvaluationTemplateResource {
     @Timed
     public ResponseEntity<Long> submitEvaluationTemplate(@Valid @RequestBody Long evaluationTemplateId) throws URISyntaxException {
         log.debug("REST request to submit EvaluationTemplate : {}", evaluationTemplateId);
+        this.evaluationTemplateService.submit(evaluationTemplateId);
+        log.debug("Exiting from submitEvaluationTemplate Resource");
         return ResponseEntity.ok().headers(HeaderUtil.createEntitySubmitAlert(ENTITY_NAME, String.valueOf(evaluationTemplateId))).body(evaluationTemplateId);
     }
 

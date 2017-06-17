@@ -22,7 +22,7 @@ entity QuestionTemplate {
 
 entity Evaluation {
 	name String required maxlength(NAME_MAX_LENGTH),
-	description String maxlength(DEFAULT_MAX_LENGTH) required
+	description String maxlength(DEFAULT_MAX_LENGTH)
 }
 
 entity Question {

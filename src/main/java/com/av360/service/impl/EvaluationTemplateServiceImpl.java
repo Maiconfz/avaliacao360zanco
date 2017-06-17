@@ -1,16 +1,21 @@
 package com.av360.service.impl;
 
-import com.av360.service.EvaluationTemplateService;
-import com.av360.domain.EvaluationTemplate;
-import com.av360.repository.EvaluationTemplateRepository;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.av360.builder.EvaluationBuilder;
+import com.av360.domain.Evaluation;
+import com.av360.domain.EvaluationTemplate;
+import com.av360.domain.User;
+import com.av360.repository.EvaluationRepository;
+import com.av360.repository.EvaluationTemplateRepository;
+import com.av360.service.EvaluationTemplateService;
 
 /**
  * Service Implementation for managing EvaluationTemplate.
@@ -22,15 +27,18 @@ public class EvaluationTemplateServiceImpl implements EvaluationTemplateService 
     private final Logger log = LoggerFactory.getLogger(EvaluationTemplateServiceImpl.class);
 
     private final EvaluationTemplateRepository evaluationTemplateRepository;
+    private final EvaluationRepository evaluationRepository;
 
-    public EvaluationTemplateServiceImpl(EvaluationTemplateRepository evaluationTemplateRepository) {
+    public EvaluationTemplateServiceImpl(EvaluationTemplateRepository evaluationTemplateRepository, EvaluationRepository evaluationRepository) {
         this.evaluationTemplateRepository = evaluationTemplateRepository;
+        this.evaluationRepository = evaluationRepository;
     }
 
     /**
      * Save a evaluationTemplate.
      *
-     * @param evaluationTemplate the entity to save
+     * @param evaluationTemplate
+     *            the entity to save
      * @return the persisted entity
      */
     @Override
@@ -41,10 +49,11 @@ public class EvaluationTemplateServiceImpl implements EvaluationTemplateService 
     }
 
     /**
-     *  Get all the evaluationTemplates.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the evaluationTemplates.
+     *
+     * @param pageable
+     *            the pagination information
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -63,10 +72,11 @@ public class EvaluationTemplateServiceImpl implements EvaluationTemplateService 
     }
 
     /**
-     *  Get one evaluationTemplate by id.
+     * Get one evaluationTemplate by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id
+     *            the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -77,13 +87,30 @@ public class EvaluationTemplateServiceImpl implements EvaluationTemplateService 
     }
 
     /**
-     *  Delete the  evaluationTemplate by id.
+     * Delete the evaluationTemplate by id.
      *
-     *  @param id the id of the entity
+     * @param id
+     *            the id of the entity
      */
     @Override
     public void delete(Long id) {
         log.debug("Request to delete EvaluationTemplate : {}", id);
         evaluationTemplateRepository.delete(id);
+    }
+
+    @Override
+    public void submit(Long evaluationTemplateId) {
+        log.debug("Request to submit EvaluationTemplate {}", evaluationTemplateId);
+        final EvaluationTemplate evaluationTemplate = this.evaluationTemplateRepository.findOne(evaluationTemplateId);
+        final EvaluationBuilder evaluationBuilder = new EvaluationBuilder();
+
+        Set<User> teamMembers = evaluationTemplate.getTeam().getMembers();
+
+        for (User evaluatedUser : teamMembers) {
+            final Evaluation evaluation = evaluationBuilder.createNewEvaluation().from(evaluationTemplate).setId(null).setEvaluatedUser(evaluatedUser).setPendingEvaluators(teamMembers).build();
+            log.debug("Submiting new evaluation with EvaluatedUser equals {}", evaluatedUser.getLogin());
+            this.evaluationRepository.save(evaluation);
+        }
+        log.debug("Evaluation {} successfully submited", evaluationTemplateId);
     }
 }

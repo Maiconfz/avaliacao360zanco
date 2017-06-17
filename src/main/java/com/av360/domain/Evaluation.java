@@ -31,7 +31,6 @@ public class Evaluation implements Serializable {
     @Column(name = "name", length = 30, nullable = false)
     private String name;
 
-    @NotNull
     @Size(max = 200)
     @Column(name = "description", length = 200, nullable = false)
     private String description;
