@@ -59,7 +59,7 @@
                 } ]
             }
         }).state('question-template-detail', {
-            parent : 'question-template',
+            parent : 'team-evaluation-template-question-templates',
             url : '/question-template/{id}',
             data : {
                 authorities : [ 'ROLE_USER' ],
